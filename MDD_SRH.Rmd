@@ -9,13 +9,14 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, include=FALSE}
 library(vtable)
 library(ggplot2)
 library(ggpubr)
 theme_set(theme_pubr())
 library('corrr')
 library(ggcorrplot)
+library(skimr)
 ```
 
 
@@ -106,6 +107,16 @@ There are also a few variables that need to be re-classified to character to be 
 
 ```
 
+```{r}
+st(Data1)
+```
+
+We can give a nicer summary
+
+```{r}
+skim(Data1)
+```
+
 
 Now we can correctly look into the results behind each of the variables. Perhaps simply tabling the varaibles will help us discover. 
 
@@ -122,7 +133,7 @@ When looking at the overall Clinical Global Impression Scale Severity at time of
 
 
 ```{r}
-table(Data1$trt_anx,Data1$trt_the)
+table(Data1$trt_adt,Data1$trt_the)
 
 ```
 Given the most common course of treatment for MDD are antidepressants and psychotherapy,  out of the 3400 observations, 292 received neither of these treatment options. There were 321 that received antidepressants and no therapy and 1395 that received therapy and no antidepressants. This means there are 1392 individuals that received both recommended therapies. 
@@ -132,21 +143,21 @@ We want to know what made the individuals getting the antidepressants more likel
 There are simple ways to do this per variable comparison
 
 ```{r}
-t <- table(Data1$trt_anx, Data1$cgis_adm)
+t <- table(Data1$trt_adt, Data1$cgis_adm)
 chisq.test(t)
 
 ```
 This lets us know that antidepressant medication is not correlated with the CGIS score on admission.
 
 ```{r}
-t <- table(Data1$trt_anx, Data1$medical_history_ren)
+t <- table(Data1$trt_adt, Data1$medical_history_anx)
 chisq.test(t)
 
 ```
 Just to visualise that:-
 
 ```{r}
-ggplot(Data1, aes(trt_anx, after_stat(count))) + geom_bar(aes(fill = medical_history_ren), position = "dodge")
+ggplot(Data1, aes(trt_adt, after_stat(count))) + geom_bar(aes(fill = medical_history_anx), position = "dodge")
 
 ```
 
@@ -154,7 +165,7 @@ One other way of assessing binary variables faster is with a selection process.
 
 ```{r}
 
-Data2 <- Data1[,c("trt_anx","medical_history_dia", "medical_history_sud","medical_history_hbp",
+Data2 <- Data1[,c("trt_adt","medical_history_dia", "medical_history_sud","medical_history_hbp",
                   "medical_history_ren", "medical_history_tum", "medical_history_anx",
                   "medical_history_mood", "symptom_1", "symptom_2", "symptom_3",
                   "symptom_4","symptom_5","cgis_adm", "cgis_dis", "gaf_lv")]
@@ -163,10 +174,10 @@ no.na.data2 <- na.omit(Data2)
 
 
 #define intercept-only model
-i <- lm(trt_anx ~ 1, data=no.na.data2)
+i <- lm(trt_adt ~ 1, data=no.na.data2)
 
 #define model with all predictors
-all <- lm(trt_anx ~ ., data=no.na.data2)
+all <- lm(trt_adt ~ ., data=no.na.data2)
 
 #perform backward stepwise regression
 backward <- step(all, direction='backward', scope=formula(all), trace=0)
@@ -178,7 +189,7 @@ backward$anova
 backward$coefficients
 
 ```
-From this backwards selection in finding what variables are predictive of antidepressants being given as treatment, substance abuse was positively correlated, diagnosis of renal failure was negatively correlated and currently feeling depressed or hopeless were all reasons in why the patient received antidepressants.
+From this backwards selection in finding what variables are predictive of antidepressants being given as treatment, a medical history of anxiety was the only predictive variable. It was also negatively correlated with antidepressants.
 
 We can also do this for all other medication types
 
@@ -212,9 +223,59 @@ backward$coefficients
 Here we find that treatment of anticonvulsants is only predicted by a history of anxiety disorder.
 
 
+```{r}
+Data4 <- Data1[,c("trt_the","medical_history_dia", "medical_history_sud","medical_history_hbp",
+                  "medical_history_ren", "medical_history_tum", "medical_history_anx",
+                  "medical_history_mood", "symptom_1", "symptom_2", "symptom_3",
+                  "symptom_4","symptom_5","cgis_adm", "cgis_dis", "gaf_lv")]
+
+no.na.data4 <- na.omit(Data4)
+
+
+#define intercept-only model
+i <- lm(trt_the ~ 1, data=no.na.data4)
+
+#define model with all predictors
+all <- lm(trt_the ~ ., data=no.na.data4)
+
+#perform backward stepwise regression
+backward <- step(all, direction='backward', scope=formula(all), trace=0)
+
+#view results of backward stepwise regression
+backward$anova
+
+#view final model
+backward$coefficients
+
+
+```
+Here we can see that the symptoms upon presence are becoming more key factors here worth considering. Predictive of need of therapy is currently feeling depressed or hopeless and presence of suicidal thoughts. Suicidal thoughts however is negatively correlated. 
+
+```{r}
+t <- table(Data1$trt_the, Data1$symptom_4)
+chisq.test(t)
+
+```
+```{r}
+t <- table(Data1$trt_the, Data1$symptom_5)
+chisq.test(t)
+
+```
+From the chi-squared tests however, they are not significantly correlated.
+
 # What if we adjusted for gender, height, weight and race?
 
-# What if we analysed the costings for each individual
+# What if we analysed the costings for each individual?
+
+# What treatments are patients receiving in conjuntion?
+
+# Are current symptoms related to medical history
+ 
+# Does weight/height affect the analysis?
+
+# Are there repeated visitors in the patients?
+
+
 
 
 
