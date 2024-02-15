@@ -9,27 +9,217 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-knit:(function(input_file, encoding){
-out_dir <- 'docs';
-rmarkdown::render(input_file, encoding = encoding),
-output_file = file.patjh(dirname(input_file),out_dir,'index.html'))})
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+library(vtable)
+library(ggplot2)
+library(ggpubr)
+theme_set(theme_pubr())
+library('corrr')
+library(ggcorrplot)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Holmusk - MDD - Dr Sophia Halliday
+
+A pharmaceutical company is looking to generate insights using data from routine clinical
+practice to better understand the treatment of major depressive disorder (MDD). MDD is
+typically treated with antidepressants and psychological therapy. Individuals who do not respond
+to an antidepressant therapy may be co-prescribed an adjunctive medication (e.g., antipsychotic,
+anticonvulsant, or lithium) alongside their antidepressant to help improve their symptoms.
+You have access to a synthetic electronic health record (EHR) dataset (attached in the email) of
+approximately 3,700 patients who received mental healthcare for MDD in a major hospital
+system. The data dictionary can be found at the end of this document. Given the data at hand,
+suggest one research question which can help understand the treatment that patients with MDD
+receive in routine care.
+
+
+## Goals and Expectations
+
+The goal of this challenge is to assess your capability in designing your own study given a
+problem statement and data at hand, consider the potential strengths and limitations of applying
+various analytical techniques, and assess your ability in “getting your hands dirty” with
+real-world data.
+
+```{r}
+demographics <- read.csv("~/Github/Holmusk_MDD/SDS RWE Data Challenge Dataset/demographics.csv")
+clinical_data <- read.csv("~/Github/Holmusk_MDD/SDS RWE Data Challenge Dataset/clinical_data.csv")
+bill_id <- read.csv("~/Github/Holmusk_MDD/SDS RWE Data Challenge Dataset/bill_id.csv")
+bill_amount <- read.csv("~/Github/Holmusk_MDD/SDS RWE Data Challenge Dataset/bill_amount.csv")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Given that there is a common id among three datasets and another common id between two, we can merge all data together if necessary. For the chosen question and time constraints, there is no need to involve costings currently.
+
+```{r}
+Data1 <- merge(demographics, clinical_data, by.x = "patient_id", by.y= "id" )
+```
+
+Summarising all variables will be helpful in seeing how the data is coded and how it may need cleaned.
+
+```{r}
+st(Data1)
+```
+This shows us many things. The variables are coded differently even within each individual group. For example Gender is given by 'm', 'f', 'Female' and 'Male'. This needs recoded into correct groups.
+
+
+```{r}
+Data1$gender[Data1$gender == 'f'] <- "Female"
+Data1$gender[Data1$gender == 'm'] <- "Male"
+table(Data1$gender)
+```
+Now we have correct variable coding for gender. Race also has the same issue. 
+
+```{r}
+Data1$race[Data1$race == 'chinese'] <- "Chinese"
+Data1$race[Data1$race == 'India'] <- "Indian"
+table(Data1$race)
+```
+```{r}
+Data1$medical_history_hbp[Data1$medical_history_hbp == 'No'] <- "0"
+Data1$medical_history_hbp[Data1$medical_history_hbp == 'Yes'] <- "1"
+table(Data1$medical_history_hbp)
+```
+There are also a few variables that need to be re-classified to character to be treated correctly in analysis .
+
+```{r, include=F}
+ Data1$medical_history_dia <- as.character(Data1$medical_history_dia)
+ Data1$medical_history_sud <- as.character(Data1$medical_history_sud)
+ Data1$medical_history_hbp <- as.character(Data1$medical_history_hbp)
+ Data1$medical_history_ren <- as.character(Data1$medical_history_ren)
+ Data1$medical_history_tum <- as.character(Data1$medical_history_tum)
+ Data1$medical_history_anx <- as.character(Data1$medical_history_anx)
+ Data1$medical_history_mood <- as.character(Data1$medical_history_mood)
+ Data1$trt_anx <- as.character(Data1$trt_anx)
+ Data1$trt_con <- as.character(Data1$trt_con)
+ Data1$trt_adt <- as.character(Data1$trt_adt)
+ Data1$trt_ssr <- as.character(Data1$trt_ssr)
+ Data1$trt_the <- as.character(Data1$trt_the)
+ Data1$trt_oth <- as.character(Data1$trt_oth)
+ Data1$symptom_1 <- as.character(Data1$symptom_1)
+ Data1$symptom_2 <- as.character(Data1$symptom_2)
+ Data1$symptom_3 <- as.character(Data1$symptom_3)
+ Data1$symptom_4 <- as.character(Data1$symptom_4)
+ Data1$symptom_5 <- as.character(Data1$symptom_5)
+ Data1$cgis_adm <- as.character(Data1$cgis_adm)
+ Data1$cgis_dis <- as.character(Data1$cgis_dis)
+ Data1$gaf_lv <- as.character(Data1$gaf_lv)
+
+```
+
+
+Now we can correctly look into the results behind each of the variables. Perhaps simply tabling the varaibles will help us discover. 
+
+```{r}
+table(Data1$gender, Data1$medical_history_anx)
+```
+
+Slightly higher numbers of Males with a history of anxiety over females
+
+```{r}
+table(Data1$gender, Data1$cgis_adm)
+```
+When looking at the overall Clinical Global Impression Scale Severity at time of admission, both genders seem to be very similar.
+
+
+```{r}
+table(Data1$trt_anx,Data1$trt_the)
+
+```
+Given the most common course of treatment for MDD are antidepressants and psychotherapy,  out of the 3400 observations, 292 received neither of these treatment options. There were 321 that received antidepressants and no therapy and 1395 that received therapy and no antidepressants. This means there are 1392 individuals that received both recommended therapies. 
+
+We want to know what made the individuals getting the antidepressants more likely to receive them.
+
+There are simple ways to do this per variable comparison
+
+```{r}
+t <- table(Data1$trt_anx, Data1$cgis_adm)
+chisq.test(t)
+
+```
+This lets us know that antidepressant medication is not correlated with the CGIS score on admission.
+
+```{r}
+t <- table(Data1$trt_anx, Data1$medical_history_ren)
+chisq.test(t)
+
+```
+Just to visualise that:-
+
+```{r}
+ggplot(Data1, aes(trt_anx, after_stat(count))) + geom_bar(aes(fill = medical_history_ren), position = "dodge")
+
+```
+
+One other way of assessing binary variables faster is with a selection process. 
+
+```{r}
+
+Data2 <- Data1[,c("trt_anx","medical_history_dia", "medical_history_sud","medical_history_hbp",
+                  "medical_history_ren", "medical_history_tum", "medical_history_anx",
+                  "medical_history_mood", "symptom_1", "symptom_2", "symptom_3",
+                  "symptom_4","symptom_5","cgis_adm", "cgis_dis", "gaf_lv")]
+
+no.na.data2 <- na.omit(Data2)
+
+
+#define intercept-only model
+i <- lm(trt_anx ~ 1, data=no.na.data2)
+
+#define model with all predictors
+all <- lm(trt_anx ~ ., data=no.na.data2)
+
+#perform backward stepwise regression
+backward <- step(all, direction='backward', scope=formula(all), trace=0)
+
+#view results of backward stepwise regression
+backward$anova
+
+#view final model
+backward$coefficients
+
+```
+From this backwards selection in finding what variables are predictive of antidepressants being given as treatment, substance abuse was positively correlated, diagnosis of renal failure was negatively correlated and currently feeling depressed or hopeless were all reasons in why the patient received antidepressants.
+
+We can also do this for all other medication types
+
+```{r}
+Data3 <- Data1[,c("trt_con","medical_history_dia", "medical_history_sud","medical_history_hbp",
+                  "medical_history_ren", "medical_history_tum", "medical_history_anx",
+                  "medical_history_mood", "symptom_1", "symptom_2", "symptom_3",
+                  "symptom_4","symptom_5","cgis_adm", "cgis_dis", "gaf_lv")]
+
+no.na.data3 <- na.omit(Data3)
+
+
+#define intercept-only model
+i <- lm(trt_con ~ 1, data=no.na.data3)
+
+#define model with all predictors
+all <- lm(trt_con ~ ., data=no.na.data3)
+
+#perform backward stepwise regression
+backward <- step(all, direction='backward', scope=formula(all), trace=0)
+
+#view results of backward stepwise regression
+backward$anova
+
+#view final model
+backward$coefficients
+
+
+```
+
+Here we find that treatment of anticonvulsants is only predicted by a history of anxiety disorder.
+
+
+# What if we adjusted for gender, height, weight and race?
+
+# What if we analysed the costings for each individual
+
+
+
+
+
+Thanks for reading,
+
+Dr Sophia Halliday
