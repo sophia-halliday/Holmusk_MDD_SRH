@@ -1,0 +1,3720 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={MDD\_SRH},
+  pdfauthor={Sophia Halliday},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{MDD\_SRH}
+\author{Sophia Halliday}
+\date{2024-02-16}
+
+\begin{document}
+\maketitle
+
+\hypertarget{holmusk---mdd---dr-sophia-halliday}{%
+\subsection{Holmusk - MDD - Dr Sophia
+Halliday}\label{holmusk---mdd---dr-sophia-halliday}}
+
+A pharmaceutical company is looking to generate insights using data from
+routine clinical practice to better understand the treatment of major
+depressive disorder (MDD). MDD is typically treated with antidepressants
+and psychological therapy. Individuals who do not respond to an
+antidepressant therapy may be co-prescribed an adjunctive medication
+(e.g., antipsychotic, anticonvulsant, or lithium) alongside their
+antidepressant to help improve their symptoms. You have access to a
+synthetic electronic health record (EHR) dataset (attached in the email)
+of approximately 3,700 patients who received mental healthcare for MDD
+in a major hospital system. The data dictionary can be found at the end
+of this document. Given the data at hand, suggest one research question
+which can help understand the treatment that patients with MDD receive
+in routine care.
+
+\hypertarget{goals-and-expectations}{%
+\subsection{Goals and Expectations}\label{goals-and-expectations}}
+
+The goal of this challenge is to assess your capability in designing
+your own study given a problem statement and data at hand, consider the
+potential strengths and limitations of applying various analytical
+techniques, and assess your ability in ``getting your hands dirty'' with
+real-world data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{demographics }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Github/Holmusk\_MDD/SDS RWE Data Challenge Dataset/demographics.csv"}\NormalTok{)}
+\NormalTok{clinical\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Github/Holmusk\_MDD/SDS RWE Data Challenge Dataset/clinical\_data.csv"}\NormalTok{)}
+\NormalTok{bill\_id }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Github/Holmusk\_MDD/SDS RWE Data Challenge Dataset/bill\_id.csv"}\NormalTok{)}
+\NormalTok{bill\_amount }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Github/Holmusk\_MDD/SDS RWE Data Challenge Dataset/bill\_amount.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Given that there is a common id among three datasets and another common
+id between two, we can merge all data together if necessary. For the
+chosen question and time constraints, there is no need to involve
+costings currently.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data1 }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(demographics, clinical\_data, }\AttributeTok{by.x =} \StringTok{"patient\_id"}\NormalTok{, }\AttributeTok{by.y=} \StringTok{"id"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+Summarising all variables will be helpful in seeing how the data is
+coded and how it may need cleaned.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{st}\NormalTok{(Data1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-4}Summary Statistics}
+\centering
+\begin{tabular}[t]{llllllll}
+\toprule
+Variable & N & Mean & Std. Dev. & Min & Pctl. 25 & Pctl. 75 & Max\\
+\midrule
+gender & 3400 &  &  &  &  &  & \\
+... f & 116 & 3\% &  &  &  &  & \\
+... Female & 1586 & 47\% &  &  &  &  & \\
+... m & 202 & 6\% &  &  &  &  & \\
+... Male & 1496 & 44\% &  &  &  &  & \\
+\addlinespace
+race & 3400 &  &  &  &  &  & \\
+... chinese & 356 & 10\% &  &  &  &  & \\
+... Chinese & 1810 & 53\% &  &  &  &  & \\
+... India & 114 & 3\% &  &  &  &  & \\
+... Indian & 230 & 7\% &  &  &  &  & \\
+\addlinespace
+... Malay & 707 & 21\% &  &  &  &  & \\
+... Others & 183 & 5\% &  &  &  &  & \\
+resident\_status & 3400 &  &  &  &  &  & \\
+... Foreigner & 161 & 5\% &  &  &  &  & \\
+... PR & 515 & 15\% &  &  &  &  & \\
+\addlinespace
+... Singapore citizen & 696 & 20\% &  &  &  &  & \\
+... Singaporean & 2028 & 60\% &  &  &  &  & \\
+medical\_history\_dia & 3400 & 0.17 & 0.37 & 0 & 0 & 0 & 1\\
+medical\_history\_sud & 3167 & 0.31 & 0.46 & 0 & 0 & 1 & 1\\
+medical\_history\_hbp & 3400 &  &  &  &  &  & \\
+\addlinespace
+... 0 & 2176 & 64\% &  &  &  &  & \\
+... 1 & 348 & 10\% &  &  &  &  & \\
+... No & 761 & 22\% &  &  &  &  & \\
+... Yes & 115 & 3\% &  &  &  &  & \\
+medical\_history\_ren & 3400 & 0.052 & 0.22 & 0 & 0 & 0 & 1\\
+\addlinespace
+medical\_history\_tum & 3096 & 0.064 & 0.24 & 0 & 0 & 0 & 1\\
+medical\_history\_anx & 3400 & 0.25 & 0.44 & 0 & 0 & 1 & 1\\
+medical\_history\_mood & 3400 & 0.25 & 0.44 & 0 & 0 & 1 & 1\\
+trt\_anx & 3400 & 0.5 & 0.5 & 0 & 0 & 1 & 1\\
+trt\_con & 3400 & 0.59 & 0.49 & 0 & 0 & 1 & 1\\
+\addlinespace
+trt\_adt & 3400 & 0.82 & 0.38 & 0 & 1 & 1 & 1\\
+trt\_ssr & 3400 & 0.52 & 0.5 & 0 & 0 & 1 & 1\\
+trt\_the & 3400 & 0.82 & 0.38 & 0 & 1 & 1 & 1\\
+trt\_oth & 3400 & 0.74 & 0.44 & 0 & 0 & 1 & 1\\
+symptom\_1 & 3400 & 0.62 & 0.49 & 0 & 0 & 1 & 1\\
+\addlinespace
+symptom\_2 & 3400 & 0.66 & 0.47 & 0 & 0 & 1 & 1\\
+symptom\_3 & 3400 & 0.54 & 0.5 & 0 & 0 & 1 & 1\\
+symptom\_4 & 3400 & 0.73 & 0.45 & 0 & 0 & 1 & 1\\
+symptom\_5 & 3400 & 0.53 & 0.5 & 0 & 0 & 1 & 1\\
+weight & 3400 & 79 & 11 & 48 & 71 & 86 & 121\\
+\addlinespace
+height & 3400 & 165 & 7 & 151 & 160 & 170 & 186\\
+cgis\_adm & 3400 & 4.3 & 1.3 & 1 & 3.8 & 5 & 7\\
+cgis\_dis & 3400 & 3.9 & 1.1 & 1 & 3 & 5 & 6\\
+gaf\_lv & 3400 & 5.8 & 1.3 & 1 & 5 & 7 & 8\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This shows us many things. The variables are coded differently even
+within each individual group. For example Gender is given by `m', `f',
+`Female' and `Male'. This needs recoded into correct groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data1}\SpecialCharTok{$}\NormalTok{gender[Data1}\SpecialCharTok{$}\NormalTok{gender }\SpecialCharTok{==} \StringTok{\textquotesingle{}f\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Female"}
+\NormalTok{Data1}\SpecialCharTok{$}\NormalTok{gender[Data1}\SpecialCharTok{$}\NormalTok{gender }\SpecialCharTok{==} \StringTok{\textquotesingle{}m\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Male"}
+\FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Female   Male 
+##   1702   1698
+\end{verbatim}
+
+Now we have correct variable coding for gender. Race also has the same
+issue.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data1}\SpecialCharTok{$}\NormalTok{race[Data1}\SpecialCharTok{$}\NormalTok{race }\SpecialCharTok{==} \StringTok{\textquotesingle{}chinese\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Chinese"}
+\NormalTok{Data1}\SpecialCharTok{$}\NormalTok{race[Data1}\SpecialCharTok{$}\NormalTok{race }\SpecialCharTok{==} \StringTok{\textquotesingle{}India\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Indian"}
+\FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{race)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Chinese  Indian   Malay  Others 
+##    2166     344     707     183
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_hbp[Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_hbp }\SpecialCharTok{==} \StringTok{\textquotesingle{}No\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"0"}
+\NormalTok{Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_hbp[Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_hbp }\SpecialCharTok{==} \StringTok{\textquotesingle{}Yes\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"1"}
+\FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_hbp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    0    1 
+## 2937  463
+\end{verbatim}
+
+There are also a few variables that need to be re-classified to
+character to be treated correctly in analysis .
+
+There are 3000 unique ID's.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{patient\_id))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{st}\NormalTok{(Data1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-9}Summary Statistics}
+\centering
+\begin{tabular}[t]{llllllll}
+\toprule
+Variable & N & Mean & Std. Dev. & Min & Pctl. 25 & Pctl. 75 & Max\\
+\midrule
+gender & 3400 &  &  &  &  &  & \\
+... Female & 1702 & 50\% &  &  &  &  & \\
+... Male & 1698 & 50\% &  &  &  &  & \\
+race & 3400 &  &  &  &  &  & \\
+... Chinese & 2166 & 64\% &  &  &  &  & \\
+\addlinespace
+... Indian & 344 & 10\% &  &  &  &  & \\
+... Malay & 707 & 21\% &  &  &  &  & \\
+... Others & 183 & 5\% &  &  &  &  & \\
+resident\_status & 3400 &  &  &  &  &  & \\
+... Foreigner & 161 & 5\% &  &  &  &  & \\
+\addlinespace
+... PR & 515 & 15\% &  &  &  &  & \\
+... Singapore citizen & 696 & 20\% &  &  &  &  & \\
+... Singaporean & 2028 & 60\% &  &  &  &  & \\
+medical\_history\_dia & 3400 &  &  &  &  &  & \\
+... 0 & 2825 & 83\% &  &  &  &  & \\
+\addlinespace
+... 1 & 575 & 17\% &  &  &  &  & \\
+medical\_history\_sud & 3167 &  &  &  &  &  & \\
+... 0 & 2181 & 69\% &  &  &  &  & \\
+... 1 & 986 & 31\% &  &  &  &  & \\
+medical\_history\_hbp & 3400 &  &  &  &  &  & \\
+\addlinespace
+... 0 & 2937 & 86\% &  &  &  &  & \\
+... 1 & 463 & 14\% &  &  &  &  & \\
+medical\_history\_ren & 3400 &  &  &  &  &  & \\
+... 0 & 3223 & 95\% &  &  &  &  & \\
+... 1 & 177 & 5\% &  &  &  &  & \\
+\addlinespace
+medical\_history\_tum & 3096 &  &  &  &  &  & \\
+... 0 & 2898 & 94\% &  &  &  &  & \\
+... 1 & 198 & 6\% &  &  &  &  & \\
+medical\_history\_anx & 3400 &  &  &  &  &  & \\
+... 0 & 2534 & 75\% &  &  &  &  & \\
+\addlinespace
+... 1 & 866 & 25\% &  &  &  &  & \\
+medical\_history\_mood & 3400 &  &  &  &  &  & \\
+... 0 & 2535 & 75\% &  &  &  &  & \\
+... 1 & 865 & 25\% &  &  &  &  & \\
+trt\_anx & 3400 &  &  &  &  &  & \\
+\addlinespace
+... 0 & 1687 & 50\% &  &  &  &  & \\
+... 1 & 1713 & 50\% &  &  &  &  & \\
+trt\_con & 3400 &  &  &  &  &  & \\
+... 0 & 1390 & 41\% &  &  &  &  & \\
+... 1 & 2010 & 59\% &  &  &  &  & \\
+\addlinespace
+trt\_adt & 3400 &  &  &  &  &  & \\
+... 0 & 609 & 18\% &  &  &  &  & \\
+... 1 & 2791 & 82\% &  &  &  &  & \\
+trt\_ssr & 3400 &  &  &  &  &  & \\
+... 0 & 1621 & 48\% &  &  &  &  & \\
+\addlinespace
+... 1 & 1779 & 52\% &  &  &  &  & \\
+trt\_the & 3400 &  &  &  &  &  & \\
+... 0 & 613 & 18\% &  &  &  &  & \\
+... 1 & 2787 & 82\% &  &  &  &  & \\
+trt\_oth & 3400 &  &  &  &  &  & \\
+\addlinespace
+... 0 & 870 & 26\% &  &  &  &  & \\
+... 1 & 2530 & 74\% &  &  &  &  & \\
+symptom\_1 & 3400 &  &  &  &  &  & \\
+... 0 & 1293 & 38\% &  &  &  &  & \\
+... 1 & 2107 & 62\% &  &  &  &  & \\
+\addlinespace
+symptom\_2 & 3400 &  &  &  &  &  & \\
+... 0 & 1148 & 34\% &  &  &  &  & \\
+... 1 & 2252 & 66\% &  &  &  &  & \\
+symptom\_3 & 3400 &  &  &  &  &  & \\
+... 0 & 1548 & 46\% &  &  &  &  & \\
+\addlinespace
+... 1 & 1852 & 54\% &  &  &  &  & \\
+symptom\_4 & 3400 &  &  &  &  &  & \\
+... 0 & 930 & 27\% &  &  &  &  & \\
+... 1 & 2470 & 73\% &  &  &  &  & \\
+symptom\_5 & 3400 &  &  &  &  &  & \\
+\addlinespace
+... 0 & 1609 & 47\% &  &  &  &  & \\
+... 1 & 1791 & 53\% &  &  &  &  & \\
+weight & 3400 & 79 & 11 & 48 & 71 & 86 & 121\\
+height & 3400 & 165 & 7 & 151 & 160 & 170 & 186\\
+cgis\_dis & 3400 &  &  &  &  &  & \\
+\addlinespace
+... 1 & 57 & 2\% &  &  &  &  & \\
+... 2 & 346 & 10\% &  &  &  &  & \\
+... 3 & 582 & 17\% &  &  &  &  & \\
+... 4 & 1243 & 37\% &  &  &  &  & \\
+... 5 & 1130 & 33\% &  &  &  &  & \\
+\addlinespace
+... 6 & 42 & 1\% &  &  &  &  & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We can give a nicer summary
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skim}\NormalTok{(Data1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Data summary}\tabularnewline
+\toprule\noalign{}
+\endfirsthead
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Name & Data1 \\
+Number of rows & 3400 \\
+Number of columns & 30 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Column type frequency: & \\
+character & 28 \\
+numeric & 2 \\
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \\
+Group variables & None \\
+\end{longtable}
+
+\textbf{Variable type: character}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.2658}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1266}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1772}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0506}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0506}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0759}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1139}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1392}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+empty
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_unique
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+whitespace
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+patient\_id & 0 & 1.00 & 32 & 32 & 0 & 3000 & 0 \\
+gender & 0 & 1.00 & 4 & 6 & 0 & 2 & 0 \\
+race & 0 & 1.00 & 5 & 7 & 0 & 4 & 0 \\
+resident\_status & 0 & 1.00 & 2 & 17 & 0 & 4 & 0 \\
+date\_of\_birth & 0 & 1.00 & 10 & 10 & 0 & 2746 & 0 \\
+date\_of\_admission & 0 & 1.00 & 6 & 8 & 0 & 1450 & 0 \\
+date\_of\_discharge & 0 & 1.00 & 6 & 8 & 0 & 1532 & 0 \\
+medical\_history\_dia & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+medical\_history\_sud & 233 & 0.93 & 1 & 1 & 0 & 2 & 0 \\
+medical\_history\_hbp & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+medical\_history\_ren & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+medical\_history\_tum & 304 & 0.91 & 1 & 1 & 0 & 2 & 0 \\
+medical\_history\_anx & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+medical\_history\_mood & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+trt\_anx & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+trt\_con & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+trt\_adt & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+trt\_ssr & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+trt\_the & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+trt\_oth & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+symptom\_1 & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+symptom\_2 & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+symptom\_3 & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+symptom\_4 & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+symptom\_5 & 0 & 1.00 & 1 & 1 & 0 & 2 & 0 \\
+cgis\_adm & 0 & 1.00 & 1 & 1 & 0 & 7 & 0 \\
+cgis\_dis & 0 & 1.00 & 1 & 1 & 0 & 6 & 0 \\
+gaf\_lv & 0 & 1.00 & 1 & 1 & 0 & 8 & 0 \\
+\end{longtable}
+
+\textbf{Variable type: numeric}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1190}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0714}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0476}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0714}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0714}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0714}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0595}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0714}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+skim\_variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n\_missing
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+complete\_rate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+sd
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p75
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+p100
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+hist
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+weight & 0 & 1 & 78.75 & 10.98 & 48 & 71.2 & 78.9 & 86.3 & 121 &
+▁▆▇▂▁ \\
+height & 0 & 1 & 165.08 & 6.97 & 151 & 160.0 & 165.0 & 170.0 & 186 &
+▅▇▇▃▁ \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqldf}\NormalTok{(}\StringTok{\textquotesingle{}SELECT gender, race FROM Data1 WHERE trt\_adt = 1\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      gender    race
+## 1      Male  Indian
+## 2    Female Chinese
+## 3      Male   Malay
+## 4    Female  Others
+## 5      Male   Malay
+## 6    Female Chinese
+## 7      Male   Malay
+## 8    Female Chinese
+## 9    Female   Malay
+## 10     Male   Malay
+## 11     Male   Malay
+## 12     Male  Indian
+## 13     Male Chinese
+## 14   Female Chinese
+## 15     Male   Malay
+## 16   Female   Malay
+## 17   Female   Malay
+## 18     Male Chinese
+## 19   Female Chinese
+## 20     Male   Malay
+## 21     Male Chinese
+## 22     Male   Malay
+## 23     Male Chinese
+## 24     Male   Malay
+## 25     Male Chinese
+## 26     Male  Others
+## 27   Female  Indian
+## 28   Female  Indian
+## 29   Female Chinese
+## 30   Female   Malay
+## 31     Male Chinese
+## 32   Female Chinese
+## 33     Male Chinese
+## 34     Male Chinese
+## 35     Male  Indian
+## 36     Male Chinese
+## 37     Male Chinese
+## 38   Female   Malay
+## 39   Female Chinese
+## 40   Female Chinese
+## 41   Female Chinese
+## 42   Female   Malay
+## 43   Female Chinese
+## 44   Female  Others
+## 45   Female  Others
+## 46     Male  Indian
+## 47     Male Chinese
+## 48     Male Chinese
+## 49   Female   Malay
+## 50   Female   Malay
+## 51     Male Chinese
+## 52   Female Chinese
+## 53     Male Chinese
+## 54     Male Chinese
+## 55     Male   Malay
+## 56   Female  Indian
+## 57     Male   Malay
+## 58     Male Chinese
+## 59     Male Chinese
+## 60     Male   Malay
+## 61     Male Chinese
+## 62     Male Chinese
+## 63   Female Chinese
+## 64     Male Chinese
+## 65   Female  Others
+## 66   Female  Indian
+## 67     Male  Others
+## 68     Male Chinese
+## 69   Female  Indian
+## 70   Female Chinese
+## 71   Female Chinese
+## 72     Male Chinese
+## 73   Female   Malay
+## 74   Female  Others
+## 75   Female   Malay
+## 76   Female   Malay
+## 77   Female Chinese
+## 78     Male Chinese
+## 79   Female   Malay
+## 80     Male Chinese
+## 81     Male Chinese
+## 82     Male   Malay
+## 83     Male Chinese
+## 84   Female Chinese
+## 85   Female Chinese
+## 86     Male   Malay
+## 87     Male Chinese
+## 88     Male Chinese
+## 89     Male Chinese
+## 90     Male  Indian
+## 91   Female Chinese
+## 92     Male Chinese
+## 93   Female Chinese
+## 94     Male Chinese
+## 95   Female Chinese
+## 96   Female Chinese
+## 97   Female Chinese
+## 98   Female Chinese
+## 99     Male  Others
+## 100    Male Chinese
+## 101  Female Chinese
+## 102  Female Chinese
+## 103  Female  Indian
+## 104    Male Chinese
+## 105    Male Chinese
+## 106  Female Chinese
+## 107    Male  Indian
+## 108    Male   Malay
+## 109  Female   Malay
+## 110  Female Chinese
+## 111    Male  Others
+## 112    Male  Others
+## 113  Female  Indian
+## 114    Male Chinese
+## 115  Female Chinese
+## 116  Female Chinese
+## 117    Male   Malay
+## 118  Female Chinese
+## 119    Male Chinese
+## 120  Female   Malay
+## 121  Female  Others
+## 122    Male  Indian
+## 123    Male Chinese
+## 124  Female Chinese
+## 125  Female Chinese
+## 126  Female  Indian
+## 127  Female   Malay
+## 128    Male Chinese
+## 129    Male Chinese
+## 130  Female Chinese
+## 131    Male Chinese
+## 132    Male Chinese
+## 133    Male Chinese
+## 134    Male  Others
+## 135    Male  Others
+## 136    Male Chinese
+## 137    Male  Indian
+## 138    Male Chinese
+## 139  Female   Malay
+## 140  Female   Malay
+## 141  Female Chinese
+## 142    Male Chinese
+## 143    Male   Malay
+## 144  Female   Malay
+## 145    Male Chinese
+## 146    Male  Indian
+## 147  Female Chinese
+## 148  Female Chinese
+## 149    Male Chinese
+## 150    Male Chinese
+## 151    Male Chinese
+## 152    Male   Malay
+## 153  Female  Indian
+## 154  Female Chinese
+## 155    Male Chinese
+## 156  Female Chinese
+## 157    Male Chinese
+## 158    Male Chinese
+## 159    Male Chinese
+## 160    Male Chinese
+## 161    Male   Malay
+## 162  Female Chinese
+## 163    Male Chinese
+## 164    Male Chinese
+## 165  Female Chinese
+## 166  Female Chinese
+## 167  Female Chinese
+## 168  Female   Malay
+## 169    Male   Malay
+## 170  Female Chinese
+## 171    Male  Indian
+## 172  Female Chinese
+## 173  Female Chinese
+## 174  Female Chinese
+## 175  Female Chinese
+## 176  Female  Indian
+## 177  Female Chinese
+## 178    Male Chinese
+## 179    Male Chinese
+## 180  Female Chinese
+## 181  Female   Malay
+## 182  Female Chinese
+## 183    Male Chinese
+## 184  Female Chinese
+## 185  Female Chinese
+## 186    Male Chinese
+## 187    Male  Indian
+## 188  Female Chinese
+## 189  Female   Malay
+## 190    Male Chinese
+## 191  Female Chinese
+## 192    Male  Indian
+## 193    Male   Malay
+## 194  Female  Others
+## 195    Male   Malay
+## 196    Male Chinese
+## 197  Female Chinese
+## 198    Male Chinese
+## 199    Male Chinese
+## 200  Female   Malay
+## 201  Female Chinese
+## 202    Male Chinese
+## 203    Male Chinese
+## 204    Male   Malay
+## 205  Female   Malay
+## 206  Female Chinese
+## 207  Female Chinese
+## 208    Male Chinese
+## 209    Male  Indian
+## 210  Female Chinese
+## 211  Female Chinese
+## 212    Male Chinese
+## 213  Female Chinese
+## 214  Female Chinese
+## 215    Male  Indian
+## 216  Female Chinese
+## 217    Male   Malay
+## 218    Male   Malay
+## 219    Male   Malay
+## 220  Female Chinese
+## 221  Female Chinese
+## 222    Male Chinese
+## 223    Male   Malay
+## 224  Female  Others
+## 225  Female  Indian
+## 226  Female Chinese
+## 227    Male  Others
+## 228  Female  Indian
+## 229    Male Chinese
+## 230    Male Chinese
+## 231    Male Chinese
+## 232    Male  Indian
+## 233  Female Chinese
+## 234  Female Chinese
+## 235    Male Chinese
+## 236    Male Chinese
+## 237  Female Chinese
+## 238  Female Chinese
+## 239  Female Chinese
+## 240  Female   Malay
+## 241  Female   Malay
+## 242  Female Chinese
+## 243  Female Chinese
+## 244  Female   Malay
+## 245    Male  Others
+## 246  Female  Indian
+## 247  Female Chinese
+## 248  Female Chinese
+## 249  Female   Malay
+## 250  Female   Malay
+## 251    Male Chinese
+## 252    Male   Malay
+## 253  Female  Indian
+## 254    Male Chinese
+## 255    Male Chinese
+## 256    Male Chinese
+## 257  Female Chinese
+## 258    Male Chinese
+## 259    Male  Indian
+## 260    Male Chinese
+## 261  Female   Malay
+## 262    Male Chinese
+## 263    Male Chinese
+## 264  Female Chinese
+## 265  Female   Malay
+## 266    Male Chinese
+## 267    Male   Malay
+## 268    Male Chinese
+## 269  Female Chinese
+## 270  Female  Indian
+## 271    Male   Malay
+## 272    Male Chinese
+## 273  Female Chinese
+## 274  Female Chinese
+## 275    Male Chinese
+## 276  Female Chinese
+## 277  Female  Others
+## 278    Male Chinese
+## 279    Male Chinese
+## 280  Female Chinese
+## 281  Female Chinese
+## 282    Male Chinese
+## 283  Female Chinese
+## 284  Female  Others
+## 285    Male  Indian
+## 286    Male Chinese
+## 287    Male  Indian
+## 288  Female Chinese
+## 289  Female Chinese
+## 290  Female Chinese
+## 291  Female  Indian
+## 292  Female Chinese
+## 293  Female Chinese
+## 294    Male Chinese
+## 295    Male Chinese
+## 296    Male  Indian
+## 297  Female Chinese
+## 298  Female Chinese
+## 299    Male Chinese
+## 300    Male   Malay
+## 301    Male  Others
+## 302    Male Chinese
+## 303    Male   Malay
+## 304    Male   Malay
+## 305  Female   Malay
+## 306  Female   Malay
+## 307  Female  Indian
+## 308  Female Chinese
+## 309  Female Chinese
+## 310  Female Chinese
+## 311  Female Chinese
+## 312    Male Chinese
+## 313    Male   Malay
+## 314    Male   Malay
+## 315  Female Chinese
+## 316  Female Chinese
+## 317  Female Chinese
+## 318  Female Chinese
+## 319    Male Chinese
+## 320    Male Chinese
+## 321  Female  Indian
+## 322    Male Chinese
+## 323    Male Chinese
+## 324    Male   Malay
+## 325    Male Chinese
+## 326  Female Chinese
+## 327  Female Chinese
+## 328  Female Chinese
+## 329  Female Chinese
+## 330  Female Chinese
+## 331    Male  Indian
+## 332    Male  Indian
+## 333    Male Chinese
+## 334  Female Chinese
+## 335    Male Chinese
+## 336  Female   Malay
+## 337    Male Chinese
+## 338    Male Chinese
+## 339    Male Chinese
+## 340  Female Chinese
+## 341    Male Chinese
+## 342    Male   Malay
+## 343    Male Chinese
+## 344    Male Chinese
+## 345  Female Chinese
+## 346    Male Chinese
+## 347    Male Chinese
+## 348    Male Chinese
+## 349    Male   Malay
+## 350    Male  Indian
+## 351  Female Chinese
+## 352  Female  Indian
+## 353    Male Chinese
+## 354  Female  Indian
+## 355  Female  Indian
+## 356    Male Chinese
+## 357    Male   Malay
+## 358    Male Chinese
+## 359  Female Chinese
+## 360    Male Chinese
+## 361  Female Chinese
+## 362    Male Chinese
+## 363    Male Chinese
+## 364    Male Chinese
+## 365    Male Chinese
+## 366  Female Chinese
+## 367    Male   Malay
+## 368  Female Chinese
+## 369  Female Chinese
+## 370  Female  Indian
+## 371    Male Chinese
+## 372  Female Chinese
+## 373    Male Chinese
+## 374    Male Chinese
+## 375    Male  Others
+## 376    Male  Others
+## 377    Male Chinese
+## 378    Male Chinese
+## 379    Male Chinese
+## 380  Female   Malay
+## 381    Male Chinese
+## 382  Female Chinese
+## 383  Female Chinese
+## 384  Female Chinese
+## 385    Male  Indian
+## 386    Male  Indian
+## 387  Female Chinese
+## 388    Male   Malay
+## 389    Male Chinese
+## 390  Female Chinese
+## 391    Male  Indian
+## 392  Female Chinese
+## 393    Male Chinese
+## 394    Male Chinese
+## 395    Male Chinese
+## 396    Male  Indian
+## 397    Male Chinese
+## 398  Female Chinese
+## 399  Female   Malay
+## 400    Male   Malay
+## 401  Female  Others
+## 402    Male   Malay
+## 403    Male   Malay
+## 404    Male Chinese
+## 405    Male   Malay
+## 406  Female Chinese
+## 407  Female   Malay
+## 408    Male Chinese
+## 409    Male Chinese
+## 410  Female Chinese
+## 411  Female   Malay
+## 412    Male Chinese
+## 413  Female   Malay
+## 414    Male Chinese
+## 415  Female Chinese
+## 416  Female Chinese
+## 417  Female   Malay
+## 418    Male Chinese
+## 419    Male  Indian
+## 420    Male Chinese
+## 421    Male Chinese
+## 422  Female  Others
+## 423  Female  Others
+## 424  Female Chinese
+## 425    Male Chinese
+## 426  Female   Malay
+## 427  Female   Malay
+## 428  Female   Malay
+## 429  Female Chinese
+## 430  Female Chinese
+## 431  Female Chinese
+## 432    Male Chinese
+## 433  Female  Others
+## 434    Male Chinese
+## 435    Male  Indian
+## 436  Female Chinese
+## 437  Female   Malay
+## 438    Male Chinese
+## 439  Female Chinese
+## 440    Male Chinese
+## 441    Male Chinese
+## 442    Male  Others
+## 443  Female   Malay
+## 444  Female   Malay
+## 445  Female Chinese
+## 446    Male Chinese
+## 447    Male   Malay
+## 448    Male Chinese
+## 449    Male Chinese
+## 450    Male  Others
+## 451    Male Chinese
+## 452  Female Chinese
+## 453  Female   Malay
+## 454    Male  Others
+## 455  Female  Indian
+## 456  Female Chinese
+## 457    Male  Indian
+## 458  Female  Others
+## 459  Female   Malay
+## 460    Male Chinese
+## 461    Male Chinese
+## 462  Female  Others
+## 463    Male Chinese
+## 464    Male Chinese
+## 465    Male   Malay
+## 466    Male Chinese
+## 467    Male Chinese
+## 468  Female Chinese
+## 469    Male Chinese
+## 470    Male Chinese
+## 471    Male   Malay
+## 472    Male Chinese
+## 473    Male   Malay
+## 474  Female   Malay
+## 475    Male  Indian
+## 476    Male Chinese
+## 477    Male  Indian
+## 478    Male Chinese
+## 479  Female   Malay
+## 480    Male Chinese
+## 481  Female Chinese
+## 482  Female Chinese
+## 483  Female   Malay
+## 484    Male Chinese
+## 485  Female Chinese
+## 486    Male Chinese
+## 487  Female Chinese
+## 488    Male Chinese
+## 489  Female Chinese
+## 490    Male Chinese
+## 491  Female   Malay
+## 492    Male Chinese
+## 493  Female  Indian
+## 494    Male Chinese
+## 495  Female   Malay
+## 496    Male Chinese
+## 497    Male Chinese
+## 498  Female Chinese
+## 499  Female Chinese
+## 500    Male Chinese
+## 501  Female  Others
+## 502    Male   Malay
+## 503  Female   Malay
+## 504    Male Chinese
+## 505  Female Chinese
+## 506  Female Chinese
+## 507  Female  Indian
+## 508  Female Chinese
+## 509  Female Chinese
+## 510  Female Chinese
+## 511  Female Chinese
+## 512    Male   Malay
+## 513  Female Chinese
+## 514  Female Chinese
+## 515    Male   Malay
+## 516    Male Chinese
+## 517    Male   Malay
+## 518  Female Chinese
+## 519  Female   Malay
+## 520    Male  Indian
+## 521    Male   Malay
+## 522    Male Chinese
+## 523    Male  Indian
+## 524    Male Chinese
+## 525    Male   Malay
+## 526  Female   Malay
+## 527    Male  Others
+## 528  Female Chinese
+## 529  Female Chinese
+## 530    Male   Malay
+## 531  Female   Malay
+## 532    Male Chinese
+## 533  Female Chinese
+## 534  Female Chinese
+## 535    Male Chinese
+## 536    Male Chinese
+## 537    Male   Malay
+## 538    Male   Malay
+## 539  Female Chinese
+## 540  Female Chinese
+## 541  Female Chinese
+## 542  Female Chinese
+## 543    Male Chinese
+## 544    Male  Indian
+## 545    Male   Malay
+## 546  Female   Malay
+## 547    Male Chinese
+## 548    Male  Others
+## 549  Female Chinese
+## 550    Male Chinese
+## 551  Female Chinese
+## 552    Male Chinese
+## 553  Female Chinese
+## 554    Male Chinese
+## 555    Male Chinese
+## 556    Male  Indian
+## 557    Male Chinese
+## 558  Female   Malay
+## 559    Male Chinese
+## 560    Male   Malay
+## 561  Female Chinese
+## 562    Male Chinese
+## 563    Male  Others
+## 564    Male  Others
+## 565    Male Chinese
+## 566    Male Chinese
+## 567  Female  Indian
+## 568  Female Chinese
+## 569  Female Chinese
+## 570    Male Chinese
+## 571  Female   Malay
+## 572    Male Chinese
+## 573  Female Chinese
+## 574  Female Chinese
+## 575  Female   Malay
+## 576  Female   Malay
+## 577  Female   Malay
+## 578  Female Chinese
+## 579    Male   Malay
+## 580    Male Chinese
+## 581  Female Chinese
+## 582    Male Chinese
+## 583  Female Chinese
+## 584    Male  Indian
+## 585  Female   Malay
+## 586    Male Chinese
+## 587  Female Chinese
+## 588    Male Chinese
+## 589  Female Chinese
+## 590    Male Chinese
+## 591    Male Chinese
+## 592    Male Chinese
+## 593    Male Chinese
+## 594  Female Chinese
+## 595    Male Chinese
+## 596    Male Chinese
+## 597    Male   Malay
+## 598    Male Chinese
+## 599  Female Chinese
+## 600  Female Chinese
+## 601  Female   Malay
+## 602    Male   Malay
+## 603  Female  Indian
+## 604    Male Chinese
+## 605  Female  Indian
+## 606  Female   Malay
+## 607  Female   Malay
+## 608    Male Chinese
+## 609    Male   Malay
+## 610    Male Chinese
+## 611  Female   Malay
+## 612  Female   Malay
+## 613  Female   Malay
+## 614  Female   Malay
+## 615  Female Chinese
+## 616  Female Chinese
+## 617  Female Chinese
+## 618    Male  Indian
+## 619  Female Chinese
+## 620  Female Chinese
+## 621    Male Chinese
+## 622  Female Chinese
+## 623  Female Chinese
+## 624    Male  Indian
+## 625  Female   Malay
+## 626  Female Chinese
+## 627    Male   Malay
+## 628    Male Chinese
+## 629  Female Chinese
+## 630    Male   Malay
+## 631  Female Chinese
+## 632    Male Chinese
+## 633    Male Chinese
+## 634    Male Chinese
+## 635  Female Chinese
+## 636  Female Chinese
+## 637  Female Chinese
+## 638  Female Chinese
+## 639  Female   Malay
+## 640    Male Chinese
+## 641    Male Chinese
+## 642  Female Chinese
+## 643  Female Chinese
+## 644  Female   Malay
+## 645    Male Chinese
+## 646    Male  Others
+## 647    Male Chinese
+## 648  Female Chinese
+## 649  Female Chinese
+## 650  Female Chinese
+## 651    Male   Malay
+## 652    Male Chinese
+## 653    Male Chinese
+## 654  Female Chinese
+## 655  Female Chinese
+## 656    Male Chinese
+## 657    Male  Indian
+## 658  Female   Malay
+## 659  Female Chinese
+## 660  Female  Indian
+## 661  Female Chinese
+## 662  Female Chinese
+## 663    Male Chinese
+## 664    Male Chinese
+## 665  Female Chinese
+## 666    Male Chinese
+## 667  Female Chinese
+## 668    Male  Others
+## 669    Male Chinese
+## 670  Female Chinese
+## 671  Female   Malay
+## 672    Male   Malay
+## 673  Female Chinese
+## 674    Male   Malay
+## 675  Female   Malay
+## 676  Female Chinese
+## 677  Female Chinese
+## 678    Male Chinese
+## 679    Male   Malay
+## 680    Male Chinese
+## 681    Male  Others
+## 682    Male Chinese
+## 683    Male   Malay
+## 684    Male   Malay
+## 685  Female   Malay
+## 686    Male Chinese
+## 687    Male Chinese
+## 688  Female Chinese
+## 689    Male Chinese
+## 690  Female Chinese
+## 691  Female Chinese
+## 692  Female Chinese
+## 693  Female Chinese
+## 694    Male   Malay
+## 695    Male Chinese
+## 696    Male  Others
+## 697    Male   Malay
+## 698    Male   Malay
+## 699    Male   Malay
+## 700  Female Chinese
+## 701    Male Chinese
+## 702    Male Chinese
+## 703  Female Chinese
+## 704  Female Chinese
+## 705  Female Chinese
+## 706    Male Chinese
+## 707    Male Chinese
+## 708    Male Chinese
+## 709    Male  Indian
+## 710    Male Chinese
+## 711  Female  Others
+## 712  Female   Malay
+## 713    Male Chinese
+## 714    Male Chinese
+## 715    Male Chinese
+## 716  Female   Malay
+## 717    Male Chinese
+## 718  Female Chinese
+## 719    Male   Malay
+## 720    Male Chinese
+## 721  Female Chinese
+## 722  Female  Indian
+## 723  Female Chinese
+## 724  Female Chinese
+## 725  Female   Malay
+## 726    Male Chinese
+## 727    Male  Indian
+## 728    Male Chinese
+## 729    Male Chinese
+## 730  Female Chinese
+## 731  Female Chinese
+## 732  Female   Malay
+## 733  Female   Malay
+## 734    Male Chinese
+## 735  Female Chinese
+## 736    Male Chinese
+## 737    Male Chinese
+## 738    Male   Malay
+## 739  Female Chinese
+## 740    Male Chinese
+## 741    Male Chinese
+## 742  Female Chinese
+## 743    Male Chinese
+## 744    Male Chinese
+## 745    Male Chinese
+## 746  Female Chinese
+## 747    Male Chinese
+## 748  Female  Others
+## 749    Male Chinese
+## 750  Female  Others
+## 751    Male Chinese
+## 752    Male Chinese
+## 753    Male Chinese
+## 754    Male Chinese
+## 755    Male Chinese
+## 756  Female Chinese
+## 757  Female Chinese
+## 758    Male Chinese
+## 759    Male Chinese
+## 760  Female  Indian
+## 761    Male Chinese
+## 762    Male   Malay
+## 763    Male  Indian
+## 764  Female Chinese
+## 765    Male Chinese
+## 766    Male Chinese
+## 767    Male Chinese
+## 768    Male Chinese
+## 769    Male Chinese
+## 770    Male Chinese
+## 771    Male   Malay
+## 772  Female Chinese
+## 773  Female Chinese
+## 774    Male   Malay
+## 775  Female  Others
+## 776    Male Chinese
+## 777    Male Chinese
+## 778  Female   Malay
+## 779  Female Chinese
+## 780  Female  Indian
+## 781  Female Chinese
+## 782    Male Chinese
+## 783  Female Chinese
+## 784    Male  Indian
+## 785  Female  Others
+## 786    Male Chinese
+## 787  Female  Indian
+## 788  Female  Indian
+## 789  Female   Malay
+## 790  Female  Others
+## 791  Female  Indian
+## 792    Male Chinese
+## 793    Male Chinese
+## 794    Male Chinese
+## 795    Male Chinese
+## 796  Female Chinese
+## 797    Male   Malay
+## 798  Female Chinese
+## 799  Female   Malay
+## 800  Female Chinese
+## 801  Female   Malay
+## 802  Female Chinese
+## 803  Female Chinese
+## 804    Male Chinese
+## 805    Male Chinese
+## 806    Male Chinese
+## 807    Male Chinese
+## 808    Male  Indian
+## 809  Female  Indian
+## 810    Male Chinese
+## 811    Male Chinese
+## 812    Male Chinese
+## 813    Male   Malay
+## 814    Male   Malay
+## 815  Female  Indian
+## 816    Male   Malay
+## 817  Female   Malay
+## 818    Male Chinese
+## 819    Male Chinese
+## 820    Male Chinese
+## 821    Male Chinese
+## 822  Female Chinese
+## 823    Male   Malay
+## 824    Male   Malay
+## 825    Male   Malay
+## 826  Female  Indian
+## 827    Male   Malay
+## 828    Male   Malay
+## 829    Male Chinese
+## 830    Male Chinese
+## 831  Female Chinese
+## 832    Male Chinese
+## 833  Female Chinese
+## 834  Female  Indian
+## 835  Female Chinese
+## 836  Female Chinese
+## 837    Male   Malay
+## 838    Male Chinese
+## 839    Male Chinese
+## 840  Female Chinese
+## 841    Male Chinese
+## 842  Female Chinese
+## 843    Male Chinese
+## 844    Male Chinese
+## 845    Male Chinese
+## 846    Male Chinese
+## 847    Male Chinese
+## 848  Female   Malay
+## 849  Female Chinese
+## 850  Female Chinese
+## 851  Female  Others
+## 852    Male Chinese
+## 853  Female Chinese
+## 854    Male   Malay
+## 855    Male Chinese
+## 856  Female Chinese
+## 857  Female Chinese
+## 858    Male  Indian
+## 859    Male Chinese
+## 860  Female Chinese
+## 861  Female Chinese
+## 862  Female  Indian
+## 863  Female Chinese
+## 864  Female Chinese
+## 865    Male Chinese
+## 866  Female Chinese
+## 867    Male   Malay
+## 868    Male Chinese
+## 869    Male  Indian
+## 870  Female Chinese
+## 871    Male   Malay
+## 872    Male Chinese
+## 873  Female Chinese
+## 874  Female Chinese
+## 875  Female Chinese
+## 876  Female Chinese
+## 877  Female   Malay
+## 878    Male Chinese
+## 879    Male Chinese
+## 880  Female Chinese
+## 881    Male Chinese
+## 882    Male Chinese
+## 883  Female   Malay
+## 884  Female   Malay
+## 885    Male Chinese
+## 886    Male Chinese
+## 887    Male Chinese
+## 888    Male Chinese
+## 889    Male Chinese
+## 890    Male Chinese
+## 891    Male Chinese
+## 892    Male Chinese
+## 893    Male Chinese
+## 894  Female Chinese
+## 895  Female Chinese
+## 896    Male Chinese
+## 897    Male Chinese
+## 898    Male Chinese
+## 899    Male Chinese
+## 900  Female Chinese
+## 901  Female Chinese
+## 902    Male   Malay
+## 903    Male Chinese
+## 904    Male   Malay
+## 905    Male   Malay
+## 906  Female  Others
+## 907  Female  Indian
+## 908  Female  Others
+## 909  Female Chinese
+## 910    Male Chinese
+## 911    Male Chinese
+## 912    Male Chinese
+## 913    Male   Malay
+## 914    Male Chinese
+## 915    Male Chinese
+## 916    Male Chinese
+## 917    Male  Others
+## 918    Male Chinese
+## 919    Male   Malay
+## 920  Female Chinese
+## 921    Male Chinese
+## 922  Female Chinese
+## 923    Male   Malay
+## 924  Female   Malay
+## 925  Female Chinese
+## 926  Female Chinese
+## 927  Female Chinese
+## 928  Female Chinese
+## 929    Male  Indian
+## 930    Male  Indian
+## 931  Female  Indian
+## 932    Male Chinese
+## 933    Male Chinese
+## 934    Male   Malay
+## 935    Male Chinese
+## 936    Male Chinese
+## 937    Male Chinese
+## 938  Female Chinese
+## 939    Male  Indian
+## 940  Female  Indian
+## 941    Male Chinese
+## 942  Female   Malay
+## 943    Male Chinese
+## 944  Female Chinese
+## 945  Female Chinese
+## 946  Female Chinese
+## 947  Female   Malay
+## 948  Female   Malay
+## 949    Male Chinese
+## 950  Female Chinese
+## 951    Male Chinese
+## 952    Male Chinese
+## 953  Female Chinese
+## 954    Male Chinese
+## 955  Female   Malay
+## 956  Female Chinese
+## 957  Female Chinese
+## 958  Female Chinese
+## 959    Male Chinese
+## 960    Male Chinese
+## 961  Female Chinese
+## 962    Male Chinese
+## 963    Male   Malay
+## 964  Female  Indian
+## 965  Female Chinese
+## 966  Female Chinese
+## 967  Female  Others
+## 968  Female   Malay
+## 969    Male Chinese
+## 970  Female Chinese
+## 971  Female   Malay
+## 972    Male Chinese
+## 973  Female Chinese
+## 974  Female Chinese
+## 975  Female Chinese
+## 976  Female Chinese
+## 977    Male Chinese
+## 978    Male   Malay
+## 979    Male Chinese
+## 980  Female Chinese
+## 981    Male Chinese
+## 982    Male Chinese
+## 983    Male Chinese
+## 984    Male   Malay
+## 985    Male Chinese
+## 986  Female  Others
+## 987  Female Chinese
+## 988    Male   Malay
+## 989    Male   Malay
+## 990  Female Chinese
+## 991    Male Chinese
+## 992  Female  Others
+## 993    Male Chinese
+## 994    Male   Malay
+## 995  Female Chinese
+## 996  Female  Indian
+## 997    Male Chinese
+## 998    Male Chinese
+## 999  Female  Others
+## 1000   Male Chinese
+## 1001   Male Chinese
+## 1002 Female   Malay
+## 1003 Female Chinese
+## 1004 Female Chinese
+## 1005 Female Chinese
+## 1006 Female Chinese
+## 1007 Female Chinese
+## 1008 Female Chinese
+## 1009 Female Chinese
+## 1010   Male   Malay
+## 1011   Male Chinese
+## 1012 Female Chinese
+## 1013 Female Chinese
+## 1014 Female Chinese
+## 1015 Female Chinese
+## 1016 Female Chinese
+## 1017   Male Chinese
+## 1018   Male Chinese
+## 1019   Male  Indian
+## 1020 Female Chinese
+## 1021   Male Chinese
+## 1022 Female Chinese
+## 1023 Female Chinese
+## 1024   Male Chinese
+## 1025   Male Chinese
+## 1026 Female Chinese
+## 1027 Female   Malay
+## 1028 Female Chinese
+## 1029   Male Chinese
+## 1030 Female Chinese
+## 1031   Male  Indian
+## 1032   Male  Indian
+## 1033   Male Chinese
+## 1034 Female   Malay
+## 1035 Female Chinese
+## 1036 Female   Malay
+## 1037 Female Chinese
+## 1038 Female  Indian
+## 1039 Female Chinese
+## 1040 Female  Indian
+## 1041   Male Chinese
+## 1042   Male Chinese
+## 1043   Male Chinese
+## 1044   Male Chinese
+## 1045   Male Chinese
+## 1046   Male Chinese
+## 1047   Male Chinese
+## 1048 Female Chinese
+## 1049 Female  Indian
+## 1050 Female  Indian
+## 1051   Male Chinese
+## 1052   Male Chinese
+## 1053   Male  Others
+## 1054   Male Chinese
+## 1055   Male Chinese
+## 1056 Female Chinese
+## 1057   Male Chinese
+## 1058 Female   Malay
+## 1059   Male  Others
+## 1060   Male Chinese
+## 1061   Male Chinese
+## 1062   Male Chinese
+## 1063 Female   Malay
+## 1064   Male   Malay
+## 1065   Male Chinese
+## 1066 Female Chinese
+## 1067   Male Chinese
+## 1068 Female Chinese
+## 1069   Male Chinese
+## 1070 Female Chinese
+## 1071 Female Chinese
+## 1072   Male Chinese
+## 1073 Female Chinese
+## 1074   Male   Malay
+## 1075 Female Chinese
+## 1076 Female Chinese
+## 1077 Female Chinese
+## 1078   Male   Malay
+## 1079   Male Chinese
+## 1080   Male Chinese
+## 1081   Male Chinese
+## 1082 Female Chinese
+## 1083 Female Chinese
+## 1084 Female Chinese
+## 1085   Male Chinese
+## 1086 Female   Malay
+## 1087   Male Chinese
+## 1088 Female Chinese
+## 1089   Male Chinese
+## 1090 Female   Malay
+## 1091   Male Chinese
+## 1092   Male Chinese
+## 1093 Female Chinese
+## 1094 Female Chinese
+## 1095 Female Chinese
+## 1096   Male Chinese
+## 1097 Female Chinese
+## 1098 Female   Malay
+## 1099 Female Chinese
+## 1100   Male Chinese
+## 1101   Male Chinese
+## 1102   Male Chinese
+## 1103 Female   Malay
+## 1104   Male Chinese
+## 1105 Female Chinese
+## 1106   Male  Indian
+## 1107 Female Chinese
+## 1108 Female Chinese
+## 1109 Female   Malay
+## 1110 Female   Malay
+## 1111 Female Chinese
+## 1112   Male  Others
+## 1113 Female  Indian
+## 1114 Female Chinese
+## 1115   Male Chinese
+## 1116   Male   Malay
+## 1117 Female Chinese
+## 1118 Female Chinese
+## 1119 Female Chinese
+## 1120   Male Chinese
+## 1121 Female Chinese
+## 1122 Female   Malay
+## 1123 Female Chinese
+## 1124   Male   Malay
+## 1125   Male Chinese
+## 1126 Female Chinese
+## 1127   Male   Malay
+## 1128 Female Chinese
+## 1129 Female  Others
+## 1130   Male Chinese
+## 1131   Male   Malay
+## 1132 Female   Malay
+## 1133   Male   Malay
+## 1134   Male Chinese
+## 1135   Male   Malay
+## 1136   Male   Malay
+## 1137 Female Chinese
+## 1138 Female Chinese
+## 1139 Female Chinese
+## 1140 Female   Malay
+## 1141 Female Chinese
+## 1142   Male   Malay
+## 1143   Male   Malay
+## 1144 Female Chinese
+## 1145 Female   Malay
+## 1146 Female Chinese
+## 1147 Female Chinese
+## 1148 Female  Indian
+## 1149   Male   Malay
+## 1150   Male  Others
+## 1151   Male   Malay
+## 1152 Female Chinese
+## 1153 Female Chinese
+## 1154 Female   Malay
+## 1155 Female Chinese
+## 1156 Female  Indian
+## 1157 Female Chinese
+## 1158   Male  Others
+## 1159 Female Chinese
+## 1160   Male Chinese
+## 1161 Female Chinese
+## 1162   Male Chinese
+## 1163 Female Chinese
+## 1164 Female Chinese
+## 1165 Female Chinese
+## 1166 Female   Malay
+## 1167 Female Chinese
+## 1168 Female Chinese
+## 1169 Female Chinese
+## 1170   Male  Others
+## 1171 Female Chinese
+## 1172 Female Chinese
+## 1173 Female  Indian
+## 1174   Male   Malay
+## 1175   Male Chinese
+## 1176   Male Chinese
+## 1177 Female   Malay
+## 1178 Female Chinese
+## 1179   Male Chinese
+## 1180 Female Chinese
+## 1181   Male Chinese
+## 1182 Female   Malay
+## 1183   Male Chinese
+## 1184   Male Chinese
+## 1185   Male   Malay
+## 1186   Male   Malay
+## 1187   Male Chinese
+## 1188 Female Chinese
+## 1189 Female Chinese
+## 1190   Male   Malay
+## 1191   Male   Malay
+## 1192   Male   Malay
+## 1193   Male   Malay
+## 1194   Male Chinese
+## 1195 Female   Malay
+## 1196   Male Chinese
+## 1197 Female Chinese
+## 1198 Female  Indian
+## 1199   Male Chinese
+## 1200 Female   Malay
+## 1201 Female Chinese
+## 1202 Female Chinese
+## 1203 Female Chinese
+## 1204 Female Chinese
+## 1205 Female Chinese
+## 1206 Female   Malay
+## 1207 Female  Others
+## 1208   Male Chinese
+## 1209 Female   Malay
+## 1210   Male Chinese
+## 1211   Male   Malay
+## 1212 Female  Others
+## 1213   Male Chinese
+## 1214 Female Chinese
+## 1215 Female   Malay
+## 1216   Male Chinese
+## 1217   Male Chinese
+## 1218 Female Chinese
+## 1219 Female   Malay
+## 1220 Female Chinese
+## 1221   Male Chinese
+## 1222 Female Chinese
+## 1223   Male   Malay
+## 1224   Male   Malay
+## 1225   Male   Malay
+## 1226 Female   Malay
+## 1227   Male Chinese
+## 1228   Male Chinese
+## 1229   Male Chinese
+## 1230   Male Chinese
+## 1231   Male Chinese
+## 1232 Female Chinese
+## 1233 Female Chinese
+## 1234   Male Chinese
+## 1235 Female  Indian
+## 1236 Female  Indian
+## 1237   Male   Malay
+## 1238   Male Chinese
+## 1239   Male Chinese
+## 1240 Female Chinese
+## 1241   Male Chinese
+## 1242   Male   Malay
+## 1243   Male Chinese
+## 1244 Female Chinese
+## 1245 Female Chinese
+## 1246 Female Chinese
+## 1247   Male   Malay
+## 1248 Female  Indian
+## 1249 Female  Indian
+## 1250 Female Chinese
+## 1251 Female Chinese
+## 1252   Male  Indian
+## 1253   Male Chinese
+## 1254   Male Chinese
+## 1255 Female  Indian
+## 1256 Female  Others
+## 1257   Male   Malay
+## 1258 Female Chinese
+## 1259   Male Chinese
+## 1260   Male  Others
+## 1261 Female Chinese
+## 1262 Female Chinese
+## 1263 Female Chinese
+## 1264 Female  Others
+## 1265   Male Chinese
+## 1266 Female  Others
+## 1267 Female   Malay
+## 1268 Female Chinese
+## 1269   Male Chinese
+## 1270   Male   Malay
+## 1271 Female Chinese
+## 1272   Male   Malay
+## 1273   Male Chinese
+## 1274   Male Chinese
+## 1275   Male   Malay
+## 1276 Female  Indian
+## 1277 Female  Indian
+## 1278 Female  Indian
+## 1279 Female  Indian
+## 1280 Female Chinese
+## 1281   Male Chinese
+## 1282 Female Chinese
+## 1283   Male   Malay
+## 1284   Male Chinese
+## 1285 Female Chinese
+## 1286   Male Chinese
+## 1287 Female Chinese
+## 1288 Female Chinese
+## 1289 Female  Indian
+## 1290 Female  Indian
+## 1291 Female   Malay
+## 1292 Female Chinese
+## 1293 Female Chinese
+## 1294   Male Chinese
+## 1295   Male Chinese
+## 1296 Female Chinese
+## 1297   Male Chinese
+## 1298 Female Chinese
+## 1299 Female Chinese
+## 1300   Male Chinese
+## 1301 Female  Indian
+## 1302   Male Chinese
+## 1303 Female   Malay
+## 1304 Female Chinese
+## 1305   Male Chinese
+## 1306 Female Chinese
+## 1307 Female Chinese
+## 1308 Female   Malay
+## 1309   Male   Malay
+## 1310 Female Chinese
+## 1311 Female Chinese
+## 1312   Male Chinese
+## 1313 Female Chinese
+## 1314   Male Chinese
+## 1315 Female   Malay
+## 1316 Female  Others
+## 1317   Male Chinese
+## 1318   Male Chinese
+## 1319 Female Chinese
+## 1320   Male   Malay
+## 1321   Male   Malay
+## 1322   Male Chinese
+## 1323 Female Chinese
+## 1324   Male Chinese
+## 1325   Male Chinese
+## 1326   Male   Malay
+## 1327   Male   Malay
+## 1328   Male Chinese
+## 1329 Female Chinese
+## 1330 Female   Malay
+## 1331 Female   Malay
+## 1332 Female Chinese
+## 1333 Female Chinese
+## 1334 Female  Indian
+## 1335 Female  Indian
+## 1336 Female  Indian
+## 1337   Male Chinese
+## 1338   Male Chinese
+## 1339 Female   Malay
+## 1340   Male   Malay
+## 1341 Female Chinese
+## 1342 Female  Indian
+## 1343 Female  Indian
+## 1344   Male Chinese
+## 1345 Female Chinese
+## 1346   Male   Malay
+## 1347 Female  Indian
+## 1348 Female  Indian
+## 1349 Female  Others
+## 1350   Male Chinese
+## 1351 Female Chinese
+## 1352   Male Chinese
+## 1353 Female   Malay
+## 1354 Female   Malay
+## 1355 Female  Indian
+## 1356 Female Chinese
+## 1357   Male Chinese
+## 1358   Male  Others
+## 1359   Male Chinese
+## 1360 Female   Malay
+## 1361 Female Chinese
+## 1362   Male Chinese
+## 1363   Male  Indian
+## 1364 Female Chinese
+## 1365   Male Chinese
+## 1366   Male  Indian
+## 1367   Male Chinese
+## 1368 Female   Malay
+## 1369 Female   Malay
+## 1370   Male  Indian
+## 1371   Male Chinese
+## 1372 Female Chinese
+## 1373   Male Chinese
+## 1374   Male   Malay
+## 1375   Male  Indian
+## 1376   Male  Others
+## 1377 Female   Malay
+## 1378 Female Chinese
+## 1379 Female  Others
+## 1380 Female Chinese
+## 1381 Female Chinese
+## 1382   Male Chinese
+## 1383 Female   Malay
+## 1384   Male Chinese
+## 1385 Female   Malay
+## 1386 Female Chinese
+## 1387 Female Chinese
+## 1388   Male   Malay
+## 1389   Male   Malay
+## 1390   Male   Malay
+## 1391 Female  Others
+## 1392 Female  Indian
+## 1393 Female  Indian
+## 1394 Female Chinese
+## 1395   Male Chinese
+## 1396 Female Chinese
+## 1397   Male  Indian
+## 1398   Male  Indian
+## 1399   Male Chinese
+## 1400 Female   Malay
+## 1401   Male Chinese
+## 1402   Male Chinese
+## 1403 Female Chinese
+## 1404 Female   Malay
+## 1405 Female Chinese
+## 1406   Male Chinese
+## 1407   Male Chinese
+## 1408   Male Chinese
+## 1409   Male Chinese
+## 1410 Female  Others
+## 1411   Male   Malay
+## 1412 Female   Malay
+## 1413 Female   Malay
+## 1414   Male Chinese
+## 1415 Female Chinese
+## 1416   Male   Malay
+## 1417 Female Chinese
+## 1418 Female Chinese
+## 1419 Female   Malay
+## 1420   Male Chinese
+## 1421 Female Chinese
+## 1422   Male  Indian
+## 1423   Male  Indian
+## 1424 Female Chinese
+## 1425 Female Chinese
+## 1426 Female   Malay
+## 1427   Male Chinese
+## 1428   Male Chinese
+## 1429 Female Chinese
+## 1430 Female Chinese
+## 1431   Male Chinese
+## 1432 Female   Malay
+## 1433 Female   Malay
+## 1434 Female   Malay
+## 1435 Female  Indian
+## 1436   Male Chinese
+## 1437 Female Chinese
+## 1438   Male  Indian
+## 1439 Female Chinese
+## 1440 Female   Malay
+## 1441   Male Chinese
+## 1442 Female   Malay
+## 1443   Male  Indian
+## 1444   Male Chinese
+## 1445   Male Chinese
+## 1446 Female Chinese
+## 1447   Male Chinese
+## 1448   Male Chinese
+## 1449   Male Chinese
+## 1450 Female   Malay
+## 1451 Female  Others
+## 1452 Female Chinese
+## 1453   Male  Others
+## 1454 Female   Malay
+## 1455   Male Chinese
+## 1456 Female  Indian
+## 1457   Male Chinese
+## 1458 Female Chinese
+## 1459   Male Chinese
+## 1460 Female  Others
+## 1461   Male Chinese
+## 1462   Male   Malay
+## 1463 Female  Indian
+## 1464 Female   Malay
+## 1465 Female   Malay
+## 1466   Male Chinese
+## 1467   Male   Malay
+## 1468   Male Chinese
+## 1469   Male Chinese
+## 1470   Male Chinese
+## 1471   Male Chinese
+## 1472   Male Chinese
+## 1473 Female Chinese
+## 1474 Female Chinese
+## 1475 Female  Others
+## 1476 Female Chinese
+## 1477   Male  Indian
+## 1478 Female Chinese
+## 1479   Male   Malay
+## 1480   Male   Malay
+## 1481 Female  Others
+## 1482   Male  Indian
+## 1483 Female Chinese
+## 1484 Female Chinese
+## 1485 Female Chinese
+## 1486   Male Chinese
+## 1487 Female Chinese
+## 1488 Female Chinese
+## 1489   Male Chinese
+## 1490 Female Chinese
+## 1491   Male Chinese
+## 1492   Male Chinese
+## 1493   Male Chinese
+## 1494   Male Chinese
+## 1495   Male Chinese
+## 1496 Female Chinese
+## 1497   Male Chinese
+## 1498 Female  Indian
+## 1499   Male  Indian
+## 1500 Female  Indian
+## 1501   Male Chinese
+## 1502   Male Chinese
+## 1503   Male   Malay
+## 1504   Male   Malay
+## 1505   Male Chinese
+## 1506   Male Chinese
+## 1507   Male   Malay
+## 1508 Female Chinese
+## 1509 Female Chinese
+## 1510 Female Chinese
+## 1511   Male Chinese
+## 1512   Male Chinese
+## 1513 Female Chinese
+## 1514 Female Chinese
+## 1515   Male Chinese
+## 1516 Female Chinese
+## 1517   Male   Malay
+## 1518   Male   Malay
+## 1519 Female Chinese
+## 1520 Female Chinese
+## 1521   Male Chinese
+## 1522 Female Chinese
+## 1523   Male Chinese
+## 1524 Female  Indian
+## 1525 Female  Indian
+## 1526 Female  Indian
+## 1527   Male Chinese
+## 1528 Female  Others
+## 1529   Male Chinese
+## 1530   Male Chinese
+## 1531 Female Chinese
+## 1532   Male Chinese
+## 1533   Male   Malay
+## 1534   Male Chinese
+## 1535   Male Chinese
+## 1536   Male Chinese
+## 1537 Female   Malay
+## 1538 Female Chinese
+## 1539 Female Chinese
+## 1540 Female   Malay
+## 1541   Male Chinese
+## 1542   Male   Malay
+## 1543   Male   Malay
+## 1544   Male   Malay
+## 1545   Male Chinese
+## 1546 Female Chinese
+## 1547   Male Chinese
+## 1548   Male   Malay
+## 1549   Male  Indian
+## 1550   Male Chinese
+## 1551   Male   Malay
+## 1552   Male Chinese
+## 1553   Male Chinese
+## 1554   Male Chinese
+## 1555 Female Chinese
+## 1556 Female   Malay
+## 1557   Male Chinese
+## 1558   Male Chinese
+## 1559 Female Chinese
+## 1560 Female Chinese
+## 1561 Female  Others
+## 1562 Female Chinese
+## 1563 Female   Malay
+## 1564 Female Chinese
+## 1565 Female   Malay
+## 1566   Male Chinese
+## 1567 Female Chinese
+## 1568   Male Chinese
+## 1569 Female   Malay
+## 1570 Female   Malay
+## 1571   Male  Indian
+## 1572 Female Chinese
+## 1573 Female  Indian
+## 1574   Male Chinese
+## 1575   Male Chinese
+## 1576   Male Chinese
+## 1577   Male Chinese
+## 1578 Female Chinese
+## 1579 Female Chinese
+## 1580   Male Chinese
+## 1581   Male Chinese
+## 1582   Male Chinese
+## 1583 Female   Malay
+## 1584 Female Chinese
+## 1585 Female Chinese
+## 1586   Male Chinese
+## 1587 Female   Malay
+## 1588 Female Chinese
+## 1589 Female Chinese
+## 1590 Female Chinese
+## 1591 Female Chinese
+## 1592   Male Chinese
+## 1593   Male Chinese
+## 1594   Male   Malay
+## 1595   Male   Malay
+## 1596 Female Chinese
+## 1597   Male Chinese
+## 1598   Male Chinese
+## 1599   Male   Malay
+## 1600 Female Chinese
+## 1601   Male Chinese
+## 1602   Male Chinese
+## 1603   Male Chinese
+## 1604 Female   Malay
+## 1605 Female Chinese
+## 1606   Male Chinese
+## 1607   Male Chinese
+## 1608 Female Chinese
+## 1609   Male   Malay
+## 1610 Female Chinese
+## 1611 Female   Malay
+## 1612   Male   Malay
+## 1613   Male Chinese
+## 1614 Female   Malay
+## 1615 Female  Others
+## 1616 Female  Others
+## 1617 Female Chinese
+## 1618 Female  Indian
+## 1619   Male Chinese
+## 1620 Female Chinese
+## 1621   Male Chinese
+## 1622 Female Chinese
+## 1623   Male  Others
+## 1624   Male Chinese
+## 1625   Male Chinese
+## 1626   Male Chinese
+## 1627   Male Chinese
+## 1628   Male Chinese
+## 1629 Female Chinese
+## 1630 Female Chinese
+## 1631   Male   Malay
+## 1632   Male Chinese
+## 1633   Male  Indian
+## 1634 Female Chinese
+## 1635 Female  Indian
+## 1636 Female  Indian
+## 1637   Male Chinese
+## 1638   Male Chinese
+## 1639   Male Chinese
+## 1640   Male Chinese
+## 1641 Female Chinese
+## 1642 Female Chinese
+## 1643 Female   Malay
+## 1644 Female Chinese
+## 1645   Male Chinese
+## 1646   Male Chinese
+## 1647 Female   Malay
+## 1648   Male   Malay
+## 1649 Female  Indian
+## 1650 Female Chinese
+## 1651 Female   Malay
+## 1652 Female   Malay
+## 1653   Male  Indian
+## 1654 Female Chinese
+## 1655 Female   Malay
+## 1656   Male Chinese
+## 1657   Male Chinese
+## 1658 Female  Indian
+## 1659   Male Chinese
+## 1660 Female Chinese
+## 1661 Female Chinese
+## 1662   Male Chinese
+## 1663   Male Chinese
+## 1664   Male Chinese
+## 1665 Female Chinese
+## 1666   Male  Others
+## 1667   Male Chinese
+## 1668   Male Chinese
+## 1669   Male Chinese
+## 1670   Male  Others
+## 1671 Female  Indian
+## 1672   Male Chinese
+## 1673   Male   Malay
+## 1674   Male Chinese
+## 1675   Male Chinese
+## 1676 Female Chinese
+## 1677 Female Chinese
+## 1678   Male Chinese
+## 1679 Female   Malay
+## 1680   Male Chinese
+## 1681 Female  Indian
+## 1682   Male Chinese
+## 1683   Male Chinese
+## 1684   Male Chinese
+## 1685   Male Chinese
+## 1686 Female   Malay
+## 1687 Female   Malay
+## 1688   Male   Malay
+## 1689   Male Chinese
+## 1690 Female Chinese
+## 1691 Female Chinese
+## 1692   Male   Malay
+## 1693   Male Chinese
+## 1694   Male  Indian
+## 1695 Female   Malay
+## 1696 Female   Malay
+## 1697 Female Chinese
+## 1698   Male Chinese
+## 1699 Female  Indian
+## 1700 Female Chinese
+## 1701   Male Chinese
+## 1702   Male Chinese
+## 1703   Male Chinese
+## 1704 Female  Indian
+## 1705   Male  Indian
+## 1706 Female Chinese
+## 1707 Female Chinese
+## 1708   Male Chinese
+## 1709 Female Chinese
+## 1710 Female Chinese
+## 1711   Male Chinese
+## 1712   Male Chinese
+## 1713   Male Chinese
+## 1714 Female   Malay
+## 1715 Female   Malay
+## 1716 Female  Others
+## 1717 Female Chinese
+## 1718   Male  Others
+## 1719   Male  Others
+## 1720 Female Chinese
+## 1721   Male Chinese
+## 1722 Female Chinese
+## 1723 Female  Indian
+## 1724 Female   Malay
+## 1725 Female  Others
+## 1726 Female Chinese
+## 1727 Female Chinese
+## 1728   Male  Others
+## 1729 Female   Malay
+## 1730 Female   Malay
+## 1731 Female Chinese
+## 1732 Female Chinese
+## 1733   Male Chinese
+## 1734   Male Chinese
+## 1735   Male  Indian
+## 1736   Male Chinese
+## 1737 Female Chinese
+## 1738 Female Chinese
+## 1739   Male   Malay
+## 1740   Male Chinese
+## 1741 Female Chinese
+## 1742   Male Chinese
+## 1743 Female   Malay
+## 1744   Male   Malay
+## 1745 Female  Others
+## 1746 Female Chinese
+## 1747   Male Chinese
+## 1748   Male Chinese
+## 1749   Male   Malay
+## 1750 Female Chinese
+## 1751   Male Chinese
+## 1752 Female  Indian
+## 1753 Female Chinese
+## 1754 Female Chinese
+## 1755 Female   Malay
+## 1756 Female   Malay
+## 1757   Male Chinese
+## 1758   Male Chinese
+## 1759 Female Chinese
+## 1760   Male Chinese
+## 1761 Female Chinese
+## 1762 Female Chinese
+## 1763 Female Chinese
+## 1764   Male Chinese
+## 1765 Female   Malay
+## 1766   Male Chinese
+## 1767   Male Chinese
+## 1768 Female Chinese
+## 1769   Male Chinese
+## 1770 Female Chinese
+## 1771 Female Chinese
+## 1772 Female Chinese
+## 1773 Female Chinese
+## 1774 Female Chinese
+## 1775 Female  Indian
+## 1776 Female Chinese
+## 1777   Male Chinese
+## 1778 Female Chinese
+## 1779 Female Chinese
+## 1780 Female Chinese
+## 1781   Male Chinese
+## 1782   Male Chinese
+## 1783   Male  Others
+## 1784   Male Chinese
+## 1785   Male Chinese
+## 1786   Male Chinese
+## 1787   Male   Malay
+## 1788   Male Chinese
+## 1789   Male Chinese
+## 1790   Male Chinese
+## 1791 Female Chinese
+## 1792   Male Chinese
+## 1793 Female   Malay
+## 1794 Female Chinese
+## 1795 Female Chinese
+## 1796   Male  Others
+## 1797   Male  Others
+## 1798 Female   Malay
+## 1799   Male Chinese
+## 1800   Male  Indian
+## 1801   Male  Indian
+## 1802 Female Chinese
+## 1803 Female Chinese
+## 1804 Female   Malay
+## 1805 Female   Malay
+## 1806 Female   Malay
+## 1807   Male  Indian
+## 1808 Female Chinese
+## 1809 Female Chinese
+## 1810 Female Chinese
+## 1811 Female Chinese
+## 1812   Male Chinese
+## 1813   Male Chinese
+## 1814   Male   Malay
+## 1815   Male  Indian
+## 1816 Female   Malay
+## 1817 Female Chinese
+## 1818   Male  Indian
+## 1819   Male  Indian
+## 1820   Male Chinese
+## 1821 Female Chinese
+## 1822   Male Chinese
+## 1823   Male   Malay
+## 1824   Male   Malay
+## 1825   Male Chinese
+## 1826 Female Chinese
+## 1827 Female   Malay
+## 1828 Female Chinese
+## 1829 Female Chinese
+## 1830 Female Chinese
+## 1831 Female Chinese
+## 1832 Female   Malay
+## 1833 Female   Malay
+## 1834 Female   Malay
+## 1835   Male   Malay
+## 1836   Male Chinese
+## 1837   Male Chinese
+## 1838 Female Chinese
+## 1839   Male   Malay
+## 1840   Male Chinese
+## 1841   Male Chinese
+## 1842 Female Chinese
+## 1843   Male Chinese
+## 1844 Female  Indian
+## 1845   Male Chinese
+## 1846   Male Chinese
+## 1847   Male   Malay
+## 1848 Female Chinese
+## 1849 Female Chinese
+## 1850 Female  Indian
+## 1851   Male  Indian
+## 1852 Female Chinese
+## 1853   Male   Malay
+## 1854 Female  Indian
+## 1855   Male Chinese
+## 1856 Female Chinese
+## 1857   Male   Malay
+## 1858   Male   Malay
+## 1859 Female Chinese
+## 1860   Male Chinese
+## 1861   Male Chinese
+## 1862   Male Chinese
+## 1863 Female Chinese
+## 1864   Male  Indian
+## 1865 Female Chinese
+## 1866 Female Chinese
+## 1867 Female Chinese
+## 1868 Female Chinese
+## 1869 Female   Malay
+## 1870   Male  Indian
+## 1871 Female Chinese
+## 1872 Female Chinese
+## 1873 Female  Others
+## 1874   Male  Others
+## 1875   Male Chinese
+## 1876 Female Chinese
+## 1877 Female Chinese
+## 1878 Female Chinese
+## 1879 Female  Indian
+## 1880 Female   Malay
+## 1881 Female Chinese
+## 1882   Male Chinese
+## 1883 Female   Malay
+## 1884 Female   Malay
+## 1885   Male  Indian
+## 1886   Male  Indian
+## 1887   Male Chinese
+## 1888 Female  Others
+## 1889 Female Chinese
+## 1890 Female Chinese
+## 1891 Female  Others
+## 1892 Female Chinese
+## 1893 Female Chinese
+## 1894 Female   Malay
+## 1895 Female Chinese
+## 1896 Female Chinese
+## 1897 Female Chinese
+## 1898   Male Chinese
+## 1899   Male Chinese
+## 1900 Female  Indian
+## 1901 Female Chinese
+## 1902 Female Chinese
+## 1903   Male Chinese
+## 1904   Male   Malay
+## 1905 Female Chinese
+## 1906 Female Chinese
+## 1907   Male   Malay
+## 1908   Male   Malay
+## 1909   Male Chinese
+## 1910   Male Chinese
+## 1911   Male  Indian
+## 1912 Female Chinese
+## 1913 Female   Malay
+## 1914 Female Chinese
+## 1915 Female Chinese
+## 1916   Male   Malay
+## 1917 Female   Malay
+## 1918 Female   Malay
+## 1919 Female Chinese
+## 1920 Female Chinese
+## 1921 Female Chinese
+## 1922   Male Chinese
+## 1923   Male Chinese
+## 1924 Female   Malay
+## 1925   Male Chinese
+## 1926 Female Chinese
+## 1927 Female  Indian
+## 1928   Male   Malay
+## 1929 Female Chinese
+## 1930   Male Chinese
+## 1931   Male Chinese
+## 1932   Male Chinese
+## 1933   Male   Malay
+## 1934 Female Chinese
+## 1935 Female Chinese
+## 1936 Female Chinese
+## 1937 Female Chinese
+## 1938 Female Chinese
+## 1939 Female Chinese
+## 1940 Female Chinese
+## 1941 Female Chinese
+## 1942 Female Chinese
+## 1943   Male Chinese
+## 1944   Male Chinese
+## 1945   Male Chinese
+## 1946 Female   Malay
+## 1947 Female   Malay
+## 1948   Male  Indian
+## 1949   Male  Indian
+## 1950   Male Chinese
+## 1951 Female Chinese
+## 1952   Male Chinese
+## 1953   Male   Malay
+## 1954   Male   Malay
+## 1955   Male Chinese
+## 1956 Female   Malay
+## 1957   Male Chinese
+## 1958   Male Chinese
+## 1959 Female Chinese
+## 1960 Female  Indian
+## 1961 Female   Malay
+## 1962   Male   Malay
+## 1963 Female   Malay
+## 1964   Male Chinese
+## 1965   Male Chinese
+## 1966 Female   Malay
+## 1967   Male Chinese
+## 1968   Male Chinese
+## 1969   Male Chinese
+## 1970   Male  Indian
+## 1971 Female   Malay
+## 1972 Female   Malay
+## 1973 Female  Indian
+## 1974   Male  Others
+## 1975   Male Chinese
+## 1976   Male   Malay
+## 1977 Female  Others
+## 1978 Female Chinese
+## 1979 Female Chinese
+## 1980   Male   Malay
+## 1981 Female Chinese
+## 1982 Female  Indian
+## 1983 Female  Indian
+## 1984 Female Chinese
+## 1985 Female  Others
+## 1986   Male Chinese
+## 1987 Female Chinese
+## 1988 Female Chinese
+## 1989   Male  Others
+## 1990   Male Chinese
+## 1991 Female Chinese
+## 1992   Male Chinese
+## 1993 Female   Malay
+## 1994   Male  Indian
+## 1995   Male Chinese
+## 1996 Female Chinese
+## 1997 Female   Malay
+## 1998 Female Chinese
+## 1999   Male Chinese
+## 2000   Male Chinese
+## 2001 Female Chinese
+## 2002   Male Chinese
+## 2003 Female Chinese
+## 2004 Female  Indian
+## 2005   Male Chinese
+## 2006   Male  Indian
+## 2007 Female   Malay
+## 2008   Male  Indian
+## 2009   Male Chinese
+## 2010 Female Chinese
+## 2011   Male Chinese
+## 2012   Male Chinese
+## 2013 Female Chinese
+## 2014   Male Chinese
+## 2015   Male Chinese
+## 2016   Male Chinese
+## 2017   Male Chinese
+## 2018   Male Chinese
+## 2019 Female   Malay
+## 2020   Male Chinese
+## 2021   Male  Indian
+## 2022   Male Chinese
+## 2023   Male   Malay
+## 2024   Male Chinese
+## 2025 Female Chinese
+## 2026   Male Chinese
+## 2027   Male Chinese
+## 2028   Male Chinese
+## 2029   Male Chinese
+## 2030 Female   Malay
+## 2031   Male Chinese
+## 2032   Male   Malay
+## 2033 Female   Malay
+## 2034   Male Chinese
+## 2035   Male   Malay
+## 2036 Female   Malay
+## 2037   Male Chinese
+## 2038 Female   Malay
+## 2039 Female   Malay
+## 2040 Female Chinese
+## 2041   Male Chinese
+## 2042 Female  Others
+## 2043   Male Chinese
+## 2044   Male Chinese
+## 2045   Male Chinese
+## 2046 Female   Malay
+## 2047 Female Chinese
+## 2048   Male Chinese
+## 2049   Male  Others
+## 2050   Male  Others
+## 2051   Male Chinese
+## 2052   Male Chinese
+## 2053   Male Chinese
+## 2054 Female Chinese
+## 2055 Female Chinese
+## 2056 Female   Malay
+## 2057 Female   Malay
+## 2058   Male   Malay
+## 2059 Female Chinese
+## 2060 Female Chinese
+## 2061   Male Chinese
+## 2062   Male   Malay
+## 2063 Female Chinese
+## 2064 Female Chinese
+## 2065   Male Chinese
+## 2066 Female Chinese
+## 2067 Female  Indian
+## 2068   Male Chinese
+## 2069 Female   Malay
+## 2070 Female   Malay
+## 2071 Female Chinese
+## 2072 Female Chinese
+## 2073 Female   Malay
+## 2074   Male Chinese
+## 2075   Male Chinese
+## 2076 Female Chinese
+## 2077 Female Chinese
+## 2078   Male   Malay
+## 2079 Female  Indian
+## 2080   Male Chinese
+## 2081 Female Chinese
+## 2082 Female Chinese
+## 2083 Female Chinese
+## 2084 Female Chinese
+## 2085 Female Chinese
+## 2086   Male  Indian
+## 2087   Male Chinese
+## 2088   Male   Malay
+## 2089 Female Chinese
+## 2090 Female Chinese
+## 2091   Male Chinese
+## 2092 Female   Malay
+## 2093 Female Chinese
+## 2094   Male Chinese
+## 2095   Male  Indian
+## 2096   Male Chinese
+## 2097 Female Chinese
+## 2098 Female Chinese
+## 2099   Male   Malay
+## 2100 Female Chinese
+## 2101 Female   Malay
+## 2102 Female  Others
+## 2103   Male  Others
+## 2104   Male  Others
+## 2105 Female   Malay
+## 2106 Female   Malay
+## 2107   Male Chinese
+## 2108   Male Chinese
+## 2109   Male Chinese
+## 2110 Female Chinese
+## 2111   Male Chinese
+## 2112 Female   Malay
+## 2113 Female Chinese
+## 2114 Female  Indian
+## 2115 Female Chinese
+## 2116   Male  Indian
+## 2117 Female Chinese
+## 2118 Female   Malay
+## 2119   Male   Malay
+## 2120 Female Chinese
+## 2121 Female Chinese
+## 2122   Male   Malay
+## 2123 Female Chinese
+## 2124   Male Chinese
+## 2125   Male   Malay
+## 2126   Male Chinese
+## 2127 Female Chinese
+## 2128   Male   Malay
+## 2129 Female   Malay
+## 2130 Female   Malay
+## 2131   Male Chinese
+## 2132 Female   Malay
+## 2133 Female Chinese
+## 2134   Male Chinese
+## 2135   Male Chinese
+## 2136 Female Chinese
+## 2137 Female   Malay
+## 2138   Male Chinese
+## 2139   Male  Others
+## 2140 Female Chinese
+## 2141   Male Chinese
+## 2142   Male   Malay
+## 2143 Female   Malay
+## 2144 Female  Indian
+## 2145 Female  Indian
+## 2146   Male Chinese
+## 2147   Male Chinese
+## 2148   Male   Malay
+## 2149   Male Chinese
+## 2150 Female Chinese
+## 2151   Male Chinese
+## 2152   Male Chinese
+## 2153   Male Chinese
+## 2154   Male Chinese
+## 2155 Female Chinese
+## 2156 Female Chinese
+## 2157   Male  Indian
+## 2158 Female Chinese
+## 2159 Female Chinese
+## 2160 Female Chinese
+## 2161   Male Chinese
+## 2162   Male Chinese
+## 2163   Male Chinese
+## 2164   Male Chinese
+## 2165 Female Chinese
+## 2166 Female Chinese
+## 2167 Female Chinese
+## 2168 Female Chinese
+## 2169 Female Chinese
+## 2170   Male Chinese
+## 2171   Male Chinese
+## 2172   Male Chinese
+## 2173 Female Chinese
+## 2174   Male Chinese
+## 2175 Female Chinese
+## 2176 Female   Malay
+## 2177 Female   Malay
+## 2178 Female   Malay
+## 2179   Male  Indian
+## 2180 Female  Indian
+## 2181 Female  Indian
+## 2182   Male Chinese
+## 2183 Female Chinese
+## 2184 Female  Others
+## 2185 Female  Others
+## 2186 Female Chinese
+## 2187   Male Chinese
+## 2188 Female   Malay
+## 2189 Female   Malay
+## 2190 Female Chinese
+## 2191   Male Chinese
+## 2192   Male  Others
+## 2193   Male  Indian
+## 2194 Female   Malay
+## 2195   Male Chinese
+## 2196   Male Chinese
+## 2197 Female Chinese
+## 2198 Female Chinese
+## 2199 Female Chinese
+## 2200 Female   Malay
+## 2201   Male Chinese
+## 2202 Female Chinese
+## 2203 Female Chinese
+## 2204   Male Chinese
+## 2205 Female Chinese
+## 2206   Male Chinese
+## 2207 Female Chinese
+## 2208 Female Chinese
+## 2209 Female Chinese
+## 2210   Male Chinese
+## 2211   Male Chinese
+## 2212   Male Chinese
+## 2213   Male Chinese
+## 2214   Male Chinese
+## 2215 Female   Malay
+## 2216 Female   Malay
+## 2217 Female   Malay
+## 2218   Male  Others
+## 2219 Female Chinese
+## 2220 Female Chinese
+## 2221 Female   Malay
+## 2222 Female   Malay
+## 2223 Female Chinese
+## 2224 Female Chinese
+## 2225   Male Chinese
+## 2226   Male   Malay
+## 2227   Male Chinese
+## 2228 Female Chinese
+## 2229   Male Chinese
+## 2230   Male Chinese
+## 2231   Male   Malay
+## 2232 Female Chinese
+## 2233 Female Chinese
+## 2234   Male Chinese
+## 2235 Female Chinese
+## 2236 Female Chinese
+## 2237   Male Chinese
+## 2238 Female Chinese
+## 2239 Female  Others
+## 2240   Male Chinese
+## 2241 Female Chinese
+## 2242   Male Chinese
+## 2243 Female Chinese
+## 2244   Male Chinese
+## 2245   Male Chinese
+## 2246 Female   Malay
+## 2247   Male   Malay
+## 2248   Male Chinese
+## 2249 Female Chinese
+## 2250   Male Chinese
+## 2251 Female   Malay
+## 2252 Female   Malay
+## 2253 Female   Malay
+## 2254   Male  Others
+## 2255   Male  Others
+## 2256 Female Chinese
+## 2257 Female Chinese
+## 2258 Female Chinese
+## 2259 Female Chinese
+## 2260 Female  Indian
+## 2261 Female  Indian
+## 2262 Female  Indian
+## 2263 Female Chinese
+## 2264 Female Chinese
+## 2265   Male Chinese
+## 2266 Female  Indian
+## 2267 Female  Indian
+## 2268   Male Chinese
+## 2269 Female Chinese
+## 2270   Male  Indian
+## 2271   Male  Indian
+## 2272 Female Chinese
+## 2273   Male Chinese
+## 2274   Male Chinese
+## 2275 Female   Malay
+## 2276   Male Chinese
+## 2277 Female   Malay
+## 2278   Male Chinese
+## 2279   Male Chinese
+## 2280 Female  Indian
+## 2281   Male Chinese
+## 2282   Male Chinese
+## 2283 Female  Indian
+## 2284 Female  Indian
+## 2285   Male Chinese
+## 2286   Male Chinese
+## 2287 Female Chinese
+## 2288 Female  Others
+## 2289 Female Chinese
+## 2290   Male   Malay
+## 2291   Male Chinese
+## 2292   Male Chinese
+## 2293 Female Chinese
+## 2294   Male Chinese
+## 2295 Female Chinese
+## 2296   Male  Indian
+## 2297   Male  Indian
+## 2298   Male Chinese
+## 2299 Female Chinese
+## 2300 Female Chinese
+## 2301   Male  Others
+## 2302 Female   Malay
+## 2303 Female Chinese
+## 2304 Female Chinese
+## 2305   Male Chinese
+## 2306   Male Chinese
+## 2307   Male   Malay
+## 2308   Male   Malay
+## 2309   Male Chinese
+## 2310 Female   Malay
+## 2311 Female  Indian
+## 2312   Male Chinese
+## 2313   Male Chinese
+## 2314   Male  Indian
+## 2315   Male Chinese
+## 2316   Male Chinese
+## 2317   Male Chinese
+## 2318   Male  Indian
+## 2319 Female   Malay
+## 2320   Male   Malay
+## 2321 Female  Indian
+## 2322   Male Chinese
+## 2323 Female  Indian
+## 2324 Female Chinese
+## 2325   Male Chinese
+## 2326 Female Chinese
+## 2327   Male Chinese
+## 2328   Male   Malay
+## 2329   Male Chinese
+## 2330   Male   Malay
+## 2331 Female Chinese
+## 2332 Female   Malay
+## 2333 Female   Malay
+## 2334   Male Chinese
+## 2335   Male Chinese
+## 2336   Male Chinese
+## 2337 Female   Malay
+## 2338   Male  Indian
+## 2339   Male Chinese
+## 2340   Male Chinese
+## 2341 Female Chinese
+## 2342   Male Chinese
+## 2343   Male Chinese
+## 2344 Female Chinese
+## 2345 Female Chinese
+## 2346 Female Chinese
+## 2347   Male  Others
+## 2348 Female Chinese
+## 2349   Male  Indian
+## 2350   Male   Malay
+## 2351 Female Chinese
+## 2352   Male Chinese
+## 2353 Female Chinese
+## 2354 Female  Others
+## 2355 Female  Others
+## 2356   Male Chinese
+## 2357 Female Chinese
+## 2358 Female Chinese
+## 2359 Female Chinese
+## 2360   Male Chinese
+## 2361   Male   Malay
+## 2362 Female Chinese
+## 2363   Male   Malay
+## 2364   Male Chinese
+## 2365   Male   Malay
+## 2366   Male   Malay
+## 2367   Male  Indian
+## 2368 Female Chinese
+## 2369   Male Chinese
+## 2370   Male  Indian
+## 2371 Female  Indian
+## 2372   Male  Indian
+## 2373   Male   Malay
+## 2374   Male Chinese
+## 2375   Male  Indian
+## 2376 Female Chinese
+## 2377   Male Chinese
+## 2378   Male Chinese
+## 2379 Female Chinese
+## 2380 Female   Malay
+## 2381 Female   Malay
+## 2382 Female Chinese
+## 2383 Female Chinese
+## 2384   Male  Others
+## 2385   Male  Others
+## 2386 Female Chinese
+## 2387 Female  Indian
+## 2388   Male   Malay
+## 2389 Female   Malay
+## 2390 Female   Malay
+## 2391 Female Chinese
+## 2392 Female Chinese
+## 2393 Female  Others
+## 2394   Male Chinese
+## 2395 Female Chinese
+## 2396   Male  Indian
+## 2397   Male   Malay
+## 2398 Female Chinese
+## 2399 Female   Malay
+## 2400 Female Chinese
+## 2401   Male Chinese
+## 2402   Male Chinese
+## 2403   Male   Malay
+## 2404 Female Chinese
+## 2405 Female Chinese
+## 2406   Male Chinese
+## 2407   Male Chinese
+## 2408   Male Chinese
+## 2409   Male  Others
+## 2410 Female   Malay
+## 2411 Female Chinese
+## 2412   Male Chinese
+## 2413 Female   Malay
+## 2414   Male Chinese
+## 2415 Female   Malay
+## 2416 Female Chinese
+## 2417 Female  Others
+## 2418   Male Chinese
+## 2419   Male Chinese
+## 2420 Female Chinese
+## 2421   Male Chinese
+## 2422 Female  Indian
+## 2423 Female  Indian
+## 2424   Male  Indian
+## 2425 Female  Indian
+## 2426   Male Chinese
+## 2427 Female  Indian
+## 2428 Female Chinese
+## 2429   Male   Malay
+## 2430 Female   Malay
+## 2431 Female Chinese
+## 2432   Male  Indian
+## 2433 Female Chinese
+## 2434 Female Chinese
+## 2435 Female Chinese
+## 2436   Male Chinese
+## 2437   Male Chinese
+## 2438   Male Chinese
+## 2439   Male Chinese
+## 2440   Male  Indian
+## 2441   Male Chinese
+## 2442 Female Chinese
+## 2443   Male   Malay
+## 2444   Male   Malay
+## 2445   Male Chinese
+## 2446 Female Chinese
+## 2447 Female Chinese
+## 2448   Male Chinese
+## 2449   Male Chinese
+## 2450   Male Chinese
+## 2451   Male Chinese
+## 2452   Male Chinese
+## 2453 Female   Malay
+## 2454   Male Chinese
+## 2455   Male Chinese
+## 2456 Female Chinese
+## 2457 Female Chinese
+## 2458   Male Chinese
+## 2459   Male Chinese
+## 2460   Male Chinese
+## 2461   Male Chinese
+## 2462 Female Chinese
+## 2463 Female  Indian
+## 2464 Female Chinese
+## 2465 Female Chinese
+## 2466   Male Chinese
+## 2467 Female  Others
+## 2468 Female   Malay
+## 2469 Female  Indian
+## 2470   Male Chinese
+## 2471   Male  Indian
+## 2472   Male Chinese
+## 2473   Male Chinese
+## 2474 Female Chinese
+## 2475 Female Chinese
+## 2476 Female   Malay
+## 2477 Female Chinese
+## 2478 Female Chinese
+## 2479 Female Chinese
+## 2480 Female Chinese
+## 2481   Male  Indian
+## 2482   Male   Malay
+## 2483 Female Chinese
+## 2484   Male Chinese
+## 2485 Female Chinese
+## 2486 Female Chinese
+## 2487 Female Chinese
+## 2488 Female   Malay
+## 2489 Female Chinese
+## 2490 Female   Malay
+## 2491   Male Chinese
+## 2492   Male Chinese
+## 2493   Male Chinese
+## 2494   Male Chinese
+## 2495   Male  Indian
+## 2496 Female Chinese
+## 2497   Male   Malay
+## 2498   Male  Indian
+## 2499   Male   Malay
+## 2500 Female   Malay
+## 2501 Female  Others
+## 2502 Female  Others
+## 2503   Male Chinese
+## 2504   Male   Malay
+## 2505   Male Chinese
+## 2506   Male Chinese
+## 2507   Male Chinese
+## 2508 Female Chinese
+## 2509   Male Chinese
+## 2510   Male Chinese
+## 2511   Male Chinese
+## 2512   Male   Malay
+## 2513   Male   Malay
+## 2514 Female  Indian
+## 2515   Male Chinese
+## 2516 Female   Malay
+## 2517   Male   Malay
+## 2518   Male   Malay
+## 2519   Male Chinese
+## 2520   Male Chinese
+## 2521   Male Chinese
+## 2522 Female Chinese
+## 2523 Female Chinese
+## 2524   Male Chinese
+## 2525   Male Chinese
+## 2526 Female Chinese
+## 2527   Male   Malay
+## 2528   Male Chinese
+## 2529   Male Chinese
+## 2530   Male   Malay
+## 2531   Male   Malay
+## 2532   Male   Malay
+## 2533   Male Chinese
+## 2534   Male   Malay
+## 2535 Female Chinese
+## 2536 Female Chinese
+## 2537 Female Chinese
+## 2538 Female Chinese
+## 2539   Male  Others
+## 2540 Female Chinese
+## 2541 Female Chinese
+## 2542   Male Chinese
+## 2543   Male Chinese
+## 2544   Male  Others
+## 2545 Female Chinese
+## 2546   Male Chinese
+## 2547 Female Chinese
+## 2548   Male   Malay
+## 2549 Female Chinese
+## 2550 Female  Indian
+## 2551   Male  Indian
+## 2552 Female  Indian
+## 2553 Female Chinese
+## 2554 Female Chinese
+## 2555 Female Chinese
+## 2556 Female   Malay
+## 2557   Male   Malay
+## 2558 Female   Malay
+## 2559   Male Chinese
+## 2560   Male Chinese
+## 2561 Female Chinese
+## 2562 Female Chinese
+## 2563   Male  Indian
+## 2564   Male  Indian
+## 2565   Male   Malay
+## 2566   Male   Malay
+## 2567 Female Chinese
+## 2568   Male Chinese
+## 2569   Male Chinese
+## 2570 Female Chinese
+## 2571 Female Chinese
+## 2572   Male  Indian
+## 2573   Male   Malay
+## 2574 Female   Malay
+## 2575 Female   Malay
+## 2576   Male Chinese
+## 2577   Male   Malay
+## 2578   Male   Malay
+## 2579   Male   Malay
+## 2580   Male Chinese
+## 2581 Female  Indian
+## 2582 Female Chinese
+## 2583 Female   Malay
+## 2584   Male Chinese
+## 2585 Female Chinese
+## 2586 Female Chinese
+## 2587   Male  Others
+## 2588   Male Chinese
+## 2589 Female Chinese
+## 2590 Female Chinese
+## 2591 Female   Malay
+## 2592   Male Chinese
+## 2593 Female Chinese
+## 2594   Male Chinese
+## 2595 Female Chinese
+## 2596   Male  Indian
+## 2597   Male  Indian
+## 2598 Female Chinese
+## 2599   Male Chinese
+## 2600   Male  Indian
+## 2601   Male  Indian
+## 2602 Female Chinese
+## 2603   Male  Others
+## 2604 Female   Malay
+## 2605   Male  Indian
+## 2606   Male   Malay
+## 2607 Female Chinese
+## 2608 Female Chinese
+## 2609 Female Chinese
+## 2610 Female Chinese
+## 2611 Female Chinese
+## 2612 Female  Indian
+## 2613 Female  Indian
+## 2614 Female  Indian
+## 2615 Female   Malay
+## 2616   Male Chinese
+## 2617   Male Chinese
+## 2618 Female   Malay
+## 2619 Female Chinese
+## 2620   Male Chinese
+## 2621 Female Chinese
+## 2622   Male Chinese
+## 2623   Male Chinese
+## 2624 Female   Malay
+## 2625 Female Chinese
+## 2626   Male Chinese
+## 2627 Female Chinese
+## 2628   Male Chinese
+## 2629 Female Chinese
+## 2630 Female   Malay
+## 2631   Male Chinese
+## 2632   Male Chinese
+## 2633   Male Chinese
+## 2634 Female Chinese
+## 2635 Female Chinese
+## 2636 Female  Indian
+## 2637 Female Chinese
+## 2638 Female Chinese
+## 2639   Male Chinese
+## 2640   Male Chinese
+## 2641   Male Chinese
+## 2642   Male Chinese
+## 2643   Male Chinese
+## 2644   Male Chinese
+## 2645   Male   Malay
+## 2646   Male Chinese
+## 2647   Male  Indian
+## 2648 Female Chinese
+## 2649 Female Chinese
+## 2650   Male  Indian
+## 2651   Male Chinese
+## 2652   Male Chinese
+## 2653 Female Chinese
+## 2654 Female   Malay
+## 2655   Male Chinese
+## 2656   Male Chinese
+## 2657 Female  Indian
+## 2658   Male Chinese
+## 2659 Female Chinese
+## 2660   Male Chinese
+## 2661 Female  Indian
+## 2662   Male Chinese
+## 2663   Male Chinese
+## 2664 Female Chinese
+## 2665   Male Chinese
+## 2666   Male Chinese
+## 2667   Male  Indian
+## 2668   Male   Malay
+## 2669 Female  Indian
+## 2670   Male Chinese
+## 2671 Female Chinese
+## 2672 Female  Indian
+## 2673 Female  Indian
+## 2674 Female   Malay
+## 2675   Male Chinese
+## 2676 Female  Indian
+## 2677 Female Chinese
+## 2678   Male   Malay
+## 2679 Female Chinese
+## 2680 Female Chinese
+## 2681 Female Chinese
+## 2682   Male Chinese
+## 2683 Female Chinese
+## 2684   Male   Malay
+## 2685   Male  Indian
+## 2686   Male Chinese
+## 2687 Female Chinese
+## 2688 Female Chinese
+## 2689 Female Chinese
+## 2690   Male   Malay
+## 2691 Female   Malay
+## 2692 Female Chinese
+## 2693   Male   Malay
+## 2694 Female Chinese
+## 2695 Female Chinese
+## 2696 Female Chinese
+## 2697   Male Chinese
+## 2698 Female Chinese
+## 2699   Male  Indian
+## 2700 Female Chinese
+## 2701 Female Chinese
+## 2702 Female Chinese
+## 2703 Female Chinese
+## 2704   Male Chinese
+## 2705 Female Chinese
+## 2706 Female Chinese
+## 2707 Female   Malay
+## 2708 Female   Malay
+## 2709 Female   Malay
+## 2710   Male Chinese
+## 2711   Male Chinese
+## 2712 Female  Indian
+## 2713   Male  Others
+## 2714 Female   Malay
+## 2715 Female  Indian
+## 2716 Female Chinese
+## 2717   Male Chinese
+## 2718 Female  Others
+## 2719 Female  Indian
+## 2720   Male  Others
+## 2721 Female Chinese
+## 2722 Female  Indian
+## 2723 Female Chinese
+## 2724 Female Chinese
+## 2725 Female   Malay
+## 2726   Male Chinese
+## 2727   Male Chinese
+## 2728   Male Chinese
+## 2729 Female   Malay
+## 2730   Male Chinese
+## 2731 Female Chinese
+## 2732 Female Chinese
+## 2733   Male Chinese
+## 2734   Male Chinese
+## 2735   Male  Indian
+## 2736 Female Chinese
+## 2737   Male   Malay
+## 2738   Male Chinese
+## 2739 Female  Others
+## 2740 Female  Others
+## 2741 Female Chinese
+## 2742 Female Chinese
+## 2743 Female  Others
+## 2744 Female Chinese
+## 2745   Male Chinese
+## 2746 Female   Malay
+## 2747   Male   Malay
+## 2748 Female Chinese
+## 2749 Female Chinese
+## 2750   Male Chinese
+## 2751   Male Chinese
+## 2752 Female Chinese
+## 2753   Male Chinese
+## 2754   Male Chinese
+## 2755   Male Chinese
+## 2756 Female Chinese
+## 2757 Female Chinese
+## 2758   Male Chinese
+## 2759   Male   Malay
+## 2760   Male   Malay
+## 2761 Female Chinese
+## 2762   Male Chinese
+## 2763 Female  Indian
+## 2764 Female Chinese
+## 2765   Male Chinese
+## 2766   Male Chinese
+## 2767 Female Chinese
+## 2768   Male Chinese
+## 2769 Female Chinese
+## 2770   Male  Others
+## 2771 Female Chinese
+## 2772   Male   Malay
+## 2773   Male Chinese
+## 2774   Male Chinese
+## 2775   Male  Others
+## 2776 Female   Malay
+## 2777 Female   Malay
+## 2778 Female   Malay
+## 2779   Male Chinese
+## 2780 Female Chinese
+## 2781   Male   Malay
+## 2782   Male   Malay
+## 2783 Female Chinese
+## 2784 Female Chinese
+## 2785 Female Chinese
+## 2786   Male  Indian
+## 2787 Female  Indian
+## 2788   Male Chinese
+## 2789   Male Chinese
+## 2790   Male   Malay
+## 2791 Female Chinese
+\end{verbatim}
+
+Now we can correctly look into the results behind each of the variables.
+Perhaps simply tabling the varaibles will help us discover.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{gender, Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_anx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         
+##             0    1
+##   Female 1301  401
+##   Male   1233  465
+\end{verbatim}
+
+Slightly higher numbers of Males with a history of anxiety over females
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{gender, Data1}\SpecialCharTok{$}\NormalTok{cgis\_adm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         
+##            1   2   3   4   5   6   7
+##   Female   8 153 269 545 415 265  47
+##   Male     6 147 267 542 401 275  60
+\end{verbatim}
+
+When looking at the overall Clinical Global Impression Scale Severity at
+time of admission, both genders seem to be very similar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{trt\_adt,Data1}\SpecialCharTok{$}\NormalTok{trt\_the)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    
+##        0    1
+##   0  122  487
+##   1  491 2300
+\end{verbatim}
+
+Given the most common course of treatment for MDD are antidepressants
+and psychotherapy, out of the 3400 observations, 292 received neither of
+these treatment options. There were 321 that received antidepressants
+and no therapy and 1395 that received therapy and no antidepressants.
+This means there are 1392 individuals that received both recommended
+therapies.
+
+We want to know what made the individuals getting the antidepressants
+more likely to receive them.
+
+There are simple ways to do this per variable comparison
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{trt\_adt, Data1}\SpecialCharTok{$}\NormalTok{cgis\_adm)}
+\FunctionTok{chisq.test}\NormalTok{(t)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in chisq.test(t): Chi-squared approximation may be incorrect
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  t
+## X-squared = 5.934, df = 6, p-value = 0.4306
+\end{verbatim}
+
+This lets us know that antidepressant medication is not correlated with
+the CGIS score on admission.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{trt\_adt, Data1}\SpecialCharTok{$}\NormalTok{medical\_history\_anx)}
+\FunctionTok{chisq.test}\NormalTok{(t)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  t
+## X-squared = 3.5614, df = 1, p-value = 0.05914
+\end{verbatim}
+
+Just to visualise that:-
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Data1, }\FunctionTok{aes}\NormalTok{(trt\_adt, }\FunctionTok{after\_stat}\NormalTok{(count))) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ medical\_history\_anx), }\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MDD_SRH_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+One other way of assessing binary variables faster is with a selection
+process.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data2 }\OtherTok{\textless{}{-}}\NormalTok{ Data1[,}\FunctionTok{c}\NormalTok{(}\StringTok{"trt\_adt"}\NormalTok{,}\StringTok{"medical\_history\_dia"}\NormalTok{, }\StringTok{"medical\_history\_sud"}\NormalTok{,}\StringTok{"medical\_history\_hbp"}\NormalTok{,}
+                  \StringTok{"medical\_history\_ren"}\NormalTok{, }\StringTok{"medical\_history\_tum"}\NormalTok{, }\StringTok{"medical\_history\_anx"}\NormalTok{,}
+                  \StringTok{"medical\_history\_mood"}\NormalTok{, }\StringTok{"symptom\_1"}\NormalTok{, }\StringTok{"symptom\_2"}\NormalTok{, }\StringTok{"symptom\_3"}\NormalTok{,}
+                  \StringTok{"symptom\_4"}\NormalTok{,}\StringTok{"symptom\_5"}\NormalTok{,}\StringTok{"cgis\_adm"}\NormalTok{, }\StringTok{"cgis\_dis"}\NormalTok{, }\StringTok{"gaf\_lv"}\NormalTok{)]}
+
+\NormalTok{no.na.data2 }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(Data2)}
+
+
+\CommentTok{\#define intercept{-}only model}
+\NormalTok{i }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(trt\_adt }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{, }\AttributeTok{data=}\NormalTok{no.na.data2)}
+
+\CommentTok{\#define model with all predictors}
+\NormalTok{all }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(trt\_adt }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{no.na.data2)}
+
+\CommentTok{\#perform backward stepwise regression}
+\NormalTok{backward }\OtherTok{\textless{}{-}} \FunctionTok{step}\NormalTok{(all, }\AttributeTok{direction=}\StringTok{\textquotesingle{}backward\textquotesingle{}}\NormalTok{, }\AttributeTok{scope=}\FunctionTok{formula}\NormalTok{(all), }\AttributeTok{trace=}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\#view results of backward stepwise regression}
+\NormalTok{backward}\SpecialCharTok{$}\NormalTok{anova}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      Step Df     Deviance Resid. Df Resid. Dev       AIC
+## 1                         NA           NA      2867   421.8536 -5522.788
+## 2                - gaf_lv  7 0.5910340004      2874   422.4446 -5532.730
+## 3              - cgis_dis  5 0.2077678009      2879   422.6524 -5541.305
+## 4              - cgis_adm  6 1.2231645060      2885   423.8755 -5544.931
+## 5  - medical_history_mood  1 0.0001158598      2886   423.8756 -5546.930
+## 6             - symptom_5  1 0.0002468982      2887   423.8759 -5548.928
+## 7   - medical_history_tum  1 0.0003697865      2888   423.8763 -5550.926
+## 8             - symptom_4  1 0.0018666390      2889   423.8781 -5552.913
+## 9             - symptom_1  1 0.0062344844      2890   423.8844 -5554.870
+## 10  - medical_history_ren  1 0.0085418613      2891   423.8929 -5556.812
+## 11  - medical_history_dia  1 0.0124206811      2892   423.9053 -5558.727
+## 12            - symptom_3  1 0.0249464093      2893   423.9303 -5560.556
+## 13  - medical_history_sud  1 0.0587180541      2894   423.9890 -5562.155
+## 14  - medical_history_hbp  1 0.1302869854      2895   424.1193 -5563.265
+## 15            - symptom_2  1 0.1587427526      2896   424.2780 -5564.180
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#view final model}
+\NormalTok{backward}\SpecialCharTok{$}\NormalTok{coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          (Intercept) medical_history_anx1 
+##            0.8292343           -0.0297727
+\end{verbatim}
+
+From this backwards selection in finding what variables are predictive
+of antidepressants being given as treatment, a medical history of
+anxiety was the only predictive variable. It was also negatively
+correlated with antidepressants.
+
+We can also do this for all other medication types
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data3 }\OtherTok{\textless{}{-}}\NormalTok{ Data1[,}\FunctionTok{c}\NormalTok{(}\StringTok{"trt\_con"}\NormalTok{,}\StringTok{"medical\_history\_dia"}\NormalTok{, }\StringTok{"medical\_history\_sud"}\NormalTok{,}\StringTok{"medical\_history\_hbp"}\NormalTok{,}
+                  \StringTok{"medical\_history\_ren"}\NormalTok{, }\StringTok{"medical\_history\_tum"}\NormalTok{, }\StringTok{"medical\_history\_anx"}\NormalTok{,}
+                  \StringTok{"medical\_history\_mood"}\NormalTok{, }\StringTok{"symptom\_1"}\NormalTok{, }\StringTok{"symptom\_2"}\NormalTok{, }\StringTok{"symptom\_3"}\NormalTok{,}
+                  \StringTok{"symptom\_4"}\NormalTok{,}\StringTok{"symptom\_5"}\NormalTok{,}\StringTok{"cgis\_adm"}\NormalTok{, }\StringTok{"cgis\_dis"}\NormalTok{, }\StringTok{"gaf\_lv"}\NormalTok{)]}
+
+\NormalTok{no.na.data3 }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(Data3)}
+
+
+\CommentTok{\#define intercept{-}only model}
+\NormalTok{i }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(trt\_con }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{, }\AttributeTok{data=}\NormalTok{no.na.data3)}
+
+\CommentTok{\#define model with all predictors}
+\NormalTok{all }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(trt\_con }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{no.na.data3)}
+
+\CommentTok{\#perform backward stepwise regression}
+\NormalTok{backward }\OtherTok{\textless{}{-}} \FunctionTok{step}\NormalTok{(all, }\AttributeTok{direction=}\StringTok{\textquotesingle{}backward\textquotesingle{}}\NormalTok{, }\AttributeTok{scope=}\FunctionTok{formula}\NormalTok{(all), }\AttributeTok{trace=}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\#view results of backward stepwise regression}
+\NormalTok{backward}\SpecialCharTok{$}\NormalTok{anova}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      Step Df     Deviance Resid. Df Resid. Dev       AIC
+## 1                         NA           NA      2867   695.9569 -4071.963
+## 2                - gaf_lv  7 1.5227104218      2874   697.4796 -4079.630
+## 3              - cgis_adm  6 1.1319513442      2880   698.6115 -4086.930
+## 4              - cgis_dis  5 1.2724202685      2885   699.8839 -4091.657
+## 5   - medical_history_ren  1 0.0001310236      2886   699.8841 -4093.656
+## 6   - medical_history_dia  1 0.0013306123      2887   699.8854 -4095.651
+## 7   - medical_history_sud  1 0.0715332736      2888   699.9569 -4097.355
+## 8             - symptom_4  1 0.1041718826      2889   700.0611 -4098.923
+## 9             - symptom_2  1 0.1208987066      2890   700.1820 -4100.423
+## 10            - symptom_3  1 0.1217865751      2891   700.3038 -4101.919
+## 11  - medical_history_tum  1 0.1877019419      2892   700.4915 -4103.142
+## 12            - symptom_1  1 0.1850755045      2893   700.6766 -4104.377
+## 13 - medical_history_mood  1 0.2383618853      2894   700.9149 -4105.391
+## 14            - symptom_5  1 0.2451283573      2895   701.1601 -4106.378
+## 15  - medical_history_hbp  1 0.2504676038      2896   701.4105 -4107.343
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#view final model}
+\NormalTok{backward}\SpecialCharTok{$}\NormalTok{coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          (Intercept) medical_history_anx1 
+##            0.5777262            0.0386937
+\end{verbatim}
+
+Here we find that treatment of anticonvulsants is only predicted by a
+history of anxiety disorder.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data4 }\OtherTok{\textless{}{-}}\NormalTok{ Data1[,}\FunctionTok{c}\NormalTok{(}\StringTok{"trt\_the"}\NormalTok{,}\StringTok{"medical\_history\_dia"}\NormalTok{, }\StringTok{"medical\_history\_sud"}\NormalTok{,}\StringTok{"medical\_history\_hbp"}\NormalTok{,}
+                  \StringTok{"medical\_history\_ren"}\NormalTok{, }\StringTok{"medical\_history\_tum"}\NormalTok{, }\StringTok{"medical\_history\_anx"}\NormalTok{,}
+                  \StringTok{"medical\_history\_mood"}\NormalTok{, }\StringTok{"symptom\_1"}\NormalTok{, }\StringTok{"symptom\_2"}\NormalTok{, }\StringTok{"symptom\_3"}\NormalTok{,}
+                  \StringTok{"symptom\_4"}\NormalTok{,}\StringTok{"symptom\_5"}\NormalTok{,}\StringTok{"cgis\_adm"}\NormalTok{, }\StringTok{"cgis\_dis"}\NormalTok{, }\StringTok{"gaf\_lv"}\NormalTok{)]}
+
+\NormalTok{no.na.data4 }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(Data4)}
+
+
+\CommentTok{\#define intercept{-}only model}
+\NormalTok{i }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(trt\_the }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{, }\AttributeTok{data=}\NormalTok{no.na.data4)}
+
+\CommentTok{\#define model with all predictors}
+\NormalTok{all }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(trt\_the }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{no.na.data4)}
+
+\CommentTok{\#perform backward stepwise regression}
+\NormalTok{backward }\OtherTok{\textless{}{-}} \FunctionTok{step}\NormalTok{(all, }\AttributeTok{direction=}\StringTok{\textquotesingle{}backward\textquotesingle{}}\NormalTok{, }\AttributeTok{scope=}\FunctionTok{formula}\NormalTok{(all), }\AttributeTok{trace=}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\#view results of backward stepwise regression}
+\NormalTok{backward}\SpecialCharTok{$}\NormalTok{anova}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      Step Df     Deviance Resid. Df Resid. Dev       AIC
+## 1                         NA           NA      2867   416.9485 -5556.682
+## 2                - gaf_lv  7 0.8090927329      2874   417.7576 -5565.063
+## 3              - cgis_adm  6 0.6293209703      2880   418.3869 -5572.701
+## 4              - cgis_dis  5 0.7686212786      2885   419.1555 -5577.382
+## 5   - medical_history_anx  1 0.0003915186      2886   419.1559 -5579.379
+## 6   - medical_history_dia  1 0.0016493973      2887   419.1575 -5581.368
+## 7             - symptom_2  1 0.0075841153      2888   419.1651 -5583.315
+## 8             - symptom_3  1 0.0208808951      2889   419.1860 -5585.171
+## 9   - medical_history_sud  1 0.0448851631      2890   419.2309 -5586.861
+## 10  - medical_history_hbp  1 0.0490177848      2891   419.2799 -5588.522
+## 11  - medical_history_tum  1 0.1066366043      2892   419.3865 -5589.785
+## 12            - symptom_1  1 0.1450251799      2893   419.5316 -5590.783
+## 13 - medical_history_mood  1 0.1615553590      2894   419.6931 -5591.667
+## 14  - medical_history_ren  1 0.2505169440      2895   419.9436 -5591.938
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#view final model}
+\NormalTok{backward}\SpecialCharTok{$}\NormalTok{coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept)  symptom_41  symptom_51 
+##  0.82156662  0.02425805 -0.02933686
+\end{verbatim}
+
+Here we can see that the symptoms upon presence are becoming more key
+factors here worth considering. Predictive of need of therapy is
+currently feeling depressed or hopeless and presence of suicidal
+thoughts. Suicidal thoughts however is negatively correlated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{trt\_the, Data1}\SpecialCharTok{$}\NormalTok{symptom\_4)}
+\FunctionTok{chisq.test}\NormalTok{(t)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  t
+## X-squared = 1.9146, df = 1, p-value = 0.1665
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(Data1}\SpecialCharTok{$}\NormalTok{trt\_the, Data1}\SpecialCharTok{$}\NormalTok{symptom\_5)}
+\FunctionTok{chisq.test}\NormalTok{(t)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  t
+## X-squared = 1.073, df = 1, p-value = 0.3003
+\end{verbatim}
+
+From the chi-squared tests however, they are not significantly
+correlated.
+
+\hypertarget{what-if-we-adjusted-for-gender-height-weight-and-race}{%
+\section{What if we adjusted for gender, height, weight and
+race?}\label{what-if-we-adjusted-for-gender-height-weight-and-race}}
+
+\hypertarget{what-if-we-analysed-the-costings-for-each-individual}{%
+\section{What if we analysed the costings for each
+individual?}\label{what-if-we-analysed-the-costings-for-each-individual}}
+
+\hypertarget{what-treatments-are-patients-receiving-in-conjuntion}{%
+\section{What treatments are patients receiving in
+conjuntion?}\label{what-treatments-are-patients-receiving-in-conjuntion}}
+
+\hypertarget{are-current-symptoms-related-to-medical-history}{%
+\section{Are current symptoms related to medical
+history}\label{are-current-symptoms-related-to-medical-history}}
+
+\hypertarget{does-weightheight-affect-the-analysis}{%
+\section{Does weight/height affect the
+analysis?}\label{does-weightheight-affect-the-analysis}}
+
+\hypertarget{are-there-repeated-visitors-in-the-patients}{%
+\section{Are there repeated visitors in the
+patients?}\label{are-there-repeated-visitors-in-the-patients}}
+
+Thanks for reading,
+
+Dr Sophia Halliday
+
+\end{document}

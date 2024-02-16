@@ -17,6 +17,8 @@ theme_set(theme_pubr())
 library('corrr')
 library(ggcorrplot)
 library(skimr)
+library(dplyr)
+library(sqldf)
 ```
 
 
@@ -107,7 +109,11 @@ There are also a few variables that need to be re-classified to character to be 
 
 ```
 
+There are 3000 unique ID's.
+
 ```{r}
+length(unique(Data1$patient_id))
+
 st(Data1)
 ```
 
@@ -117,6 +123,9 @@ We can give a nicer summary
 skim(Data1)
 ```
 
+```{r}
+sqldf('SELECT gender, race FROM Data1 WHERE trt_adt = 1')
+```
 
 Now we can correctly look into the results behind each of the variables. Perhaps simply tabling the varaibles will help us discover. 
 
